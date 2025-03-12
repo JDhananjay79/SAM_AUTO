@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="3" passed="3" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2025-03-12T15:44:05 IST" name="Default suite" finished-at="2025-03-12T15:44:19 IST" duration-ms="14379">
+    <groups>
+    </groups>
+    <test started-at="2025-03-12T15:44:05 IST" name="Default test" finished-at="2025-03-12T15:44:19 IST" duration-ms="14379">
+      <class name="com.aepl.sam.tests.ProductionDevicePageTest">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.aepl.sam.tests.ProductionDevicePageTest@3cdf2c61]" started-at="2025-03-12T15:44:05 IST" name="setUp" finished-at="2025-03-12T15:44:10 IST" duration-ms="4798" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="zoomChrome()[pri:0, instance:com.aepl.sam.tests.ProductionDevicePageTest@3cdf2c61]" started-at="2025-03-12T15:44:10 IST" name="zoomChrome" finished-at="2025-03-12T15:44:10 IST" duration-ms="42" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- zoomChrome -->
+        <test-method signature="TestNavBarLink()[pri:1, instance:com.aepl.sam.tests.ProductionDevicePageTest@3cdf2c61]" started-at="2025-03-12T15:44:10 IST" name="TestNavBarLink" finished-at="2025-03-12T15:44:12 IST" duration-ms="2639" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TestNavBarLink -->
+        <test-method is-config="true" signature="zoomChrome()[pri:0, instance:com.aepl.sam.tests.ProductionDevicePageTest@3cdf2c61]" started-at="2025-03-12T15:44:12 IST" name="zoomChrome" finished-at="2025-03-12T15:44:12 IST" duration-ms="10" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- zoomChrome -->
+        <test-method signature="TestClickAddProdDevice()[pri:2, instance:com.aepl.sam.tests.ProductionDevicePageTest@3cdf2c61]" started-at="2025-03-12T15:44:12 IST" name="TestClickAddProdDevice" finished-at="2025-03-12T15:44:15 IST" duration-ms="2222" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TestClickAddProdDevice -->
+        <test-method is-config="true" signature="zoomChrome()[pri:0, instance:com.aepl.sam.tests.ProductionDevicePageTest@3cdf2c61]" started-at="2025-03-12T15:44:15 IST" name="zoomChrome" finished-at="2025-03-12T15:44:15 IST" duration-ms="9" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- zoomChrome -->
+        <test-method signature="TestAddProdDevice()[pri:3, instance:com.aepl.sam.tests.ProductionDevicePageTest@3cdf2c61]" started-at="2025-03-12T15:44:15 IST" name="TestAddProdDevice" finished-at="2025-03-12T15:44:19 IST" duration-ms="4603" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TestAddProdDevice -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.aepl.sam.tests.ProductionDevicePageTest@3cdf2c61]" started-at="2025-03-12T15:44:19 IST" name="tearDown" finished-at="2025-03-12T15:44:28 IST" duration-ms="8287" status="FAIL">
+          <exception class="org.openqa.selenium.NoSuchSessionException">
+            <message>
+              <![CDATA[invalid session id: session deleted as the browser has closed the connection
+from disconnected: not connected to DevTools
+  (Session info: chrome=134.0.6998.36)
+Build info: version: '4.27.0', revision: 'd6e718d134'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '23'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [e3d901f10f5c0f6d6d4ed19571577983, findElement {value=//a[contains(text(),'Log')], using=xpath}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 134.0.6998.36, chrome: {chromedriverVersion: 134.0.6998.36 (35090789245d..., userDataDir: C:\Users\DHANAN~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:54125}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:54125/devtoo..., se:cdpVersion: 134.0.6998.36, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: e3d901f10f5c0f6d6d4ed19571577983]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.NoSuchSessionException: invalid session id: session deleted as the browser has closed the connection
+from disconnected: not connected to DevTools
+  (Session info: chrome=134.0.6998.36)
+Build info: version: '4.27.0', revision: 'd6e718d134'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '23'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [e3d901f10f5c0f6d6d4ed19571577983, findElement {value=//a[contains(text(),'Log')], using=xpath}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 134.0.6998.36, chrome: {chromedriverVersion: 134.0.6998.36 (35090789245d..., userDataDir: C:\Users\DHANAN~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:54125}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:54125/devtoo..., se:cdpVersion: 134.0.6998.36, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: e3d901f10f5c0f6d6d4ed19571577983
+at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:501)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:485)
+at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
+at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
+at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
+at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:194)
+at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:190)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:203)
+at com.aepl.sam.pages.LoginPage.waitForVisibility(LoginPage.java:83)
+at com.aepl.sam.pages.LoginPage.clickLogout(LoginPage.java:52)
+at com.aepl.sam.base.TestBase.logout(TestBase.java:92)
+at com.aepl.sam.base.TestBase.tearDown(TestBase.java:77)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:69)
+at org.testng.internal.invokers.ConfigInvoker.invokeConfigurationMethod(ConfigInvoker.java:361)
+at org.testng.internal.invokers.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:296)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:404)
+at org.testng.SuiteRunner.run(SuiteRunner.java:330)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1256)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1176)
+at org.testng.TestNG.runSuites(TestNG.java:1099)
+at org.testng.TestNG.run(TestNG.java:1067)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.NoSuchSessionException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.aepl.sam.tests.ProductionDevicePageTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
