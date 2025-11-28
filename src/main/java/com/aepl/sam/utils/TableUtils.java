@@ -188,7 +188,7 @@ public class TableUtils {
 
 	public boolean clickFirstViewButton(By tableLocator) {
 		try {
-			By viewButtonLocator = By.xpath("//table//tbody//tr//td[last()]//button[contains(., 'visibility')]");
+			By viewButtonLocator = By.xpath(".//td[last()]//button[contains(., 'visibility')]");
 			WebElement firstViewButton = wait.until(ExpectedConditions.elementToBeClickable(viewButtonLocator));
 			firstViewButton.click();
 			logger.info("Clicked the first view button successfully.");
@@ -201,7 +201,7 @@ public class TableUtils {
 
 	public boolean clickFirstDeleteButton(By tableLocator) {
 		try {
-			By deleteButtonLocator = By.xpath("//table//tbody//tr//td[last()]//button[contains(., 'delete')]");
+			By deleteButtonLocator = By.xpath(".//td[last()]//button[contains(., 'delete')]");
 			WebElement firstDeleteButton = wait.until(ExpectedConditions.elementToBeClickable(deleteButtonLocator));
 			firstDeleteButton.click();
 			logger.info("Clicked the first delete button successfully.");
@@ -214,7 +214,7 @@ public class TableUtils {
 
 	/**
 	 * Checks if the "No Data Found" image or message is present inside the table.
-	 * 
+	 *
 	 * @param tableLocator Locator for the table element.
 	 * @return true if a 'no data' indicator (like class 'no-data-img') is found,
 	 *         false otherwise.
