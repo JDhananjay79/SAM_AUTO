@@ -182,6 +182,8 @@ public class DeviceModelsPageTest extends TestBase implements DeviceModelConstan
 	 *  
 	 *  NOTE : modify in future 
 	 *  
+	 *  NOTE : Create a random string for creating new model and store it in new variable 
+	 *  which we can use it further for search that perticular madel.
 	 *  */
 //	@Test(priority = 22)
 	public void testTableDataOfDeviceModelListTable() {
