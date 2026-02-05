@@ -16,7 +16,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-import com.aepl.sam.constants.Constants;
+import com.aepl.sam.utils.Constants;
 import com.aepl.sam.locators.SimBatchDataDetailsPageLocators;
 
 public class SimBatchDataDetailsPage extends SimBatchDataDetailsPageLocators {
@@ -100,20 +100,20 @@ public class SimBatchDataDetailsPage extends SimBatchDataDetailsPageLocators {
 	public List<String> validateTableHeaders(String tableType) {
 		By locator;
 		switch (tableType.toLowerCase()) {
-		case "upload":
-			locator = UPLOADED_ICCID_TABLE_HEADERS;
-			break;
+			case "upload":
+				locator = UPLOADED_ICCID_TABLE_HEADERS;
+				break;
 
-		case "duplicate":
-			locator = DUPLICATE_ICCID_TABLE_HEADERS;
-			break;
+			case "duplicate":
+				locator = DUPLICATE_ICCID_TABLE_HEADERS;
+				break;
 
-		case "not present":
-			locator = NOT_PRESENT_ICCID_TABLE_HEADERS;
-			break;
+			case "not present":
+				locator = NOT_PRESENT_ICCID_TABLE_HEADERS;
+				break;
 
-		default:
-			throw new IllegalArgumentException("Invalid table type: " + tableType);
+			default:
+				throw new IllegalArgumentException("Invalid table type: " + tableType);
 		}
 
 		List<WebElement> actual_headers = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
@@ -225,43 +225,43 @@ public class SimBatchDataDetailsPage extends SimBatchDataDetailsPageLocators {
 		return driver.findElement(INPUT_BOX).isEnabled();
 	}
 
-//	public Object isInputBoxHaveProperValidations() {
-//		Map<String, String> actual_validations = new HashMap<>();
-//		String error;
-//
-//		WebElement inputBox = driver.findElement(INPUT_BOX);
-//		WebElement submit_button = driver.findElement(By.className("submit-button"));
-//
-//		// 1. Empty input (only click & submit)
-//		inputBox.clear();
-//		inputBox.click();
-//		submit_button.click();
-//		error = driver.findElement(By.xpath("//mat-error/span")).getText();
-//		actual_validations.put("empty click", error);
-//
-//		// 2. Short input (< 20 chars)
-//		inputBox.clear();
-//		inputBox.sendKeys("shortText");
-//		submit_button.click();
-//		error = driver.findElement(By.xpath("//mat-error/span")).getText();
-//		actual_validations.put("short input", error);
-//
-//		// 3. Long input (> 20 chars)
-//		inputBox.clear();
-//		inputBox.sendKeys("thisIsMoreThan20CharactersInput");
-//		submit_button.click();
-//		error = driver.findElement(By.xpath("//mat-error/span")).getText();
-//		actual_validations.put("long input", error);
-//
-//		// 4. Special characters
-//		inputBox.clear();
-//		inputBox.sendKeys("Invalid@#%CharsInput!!");
-//		submit_button.click();
-//		error = driver.findElement(By.xpath("//mat-error/span")).getText();
-//		actual_validations.put("special char", error);
-//
-//		return actual_validations;
-//	}
+	// public Object isInputBoxHaveProperValidations() {
+	// Map<String, String> actual_validations = new HashMap<>();
+	// String error;
+	//
+	// WebElement inputBox = driver.findElement(INPUT_BOX);
+	// WebElement submit_button = driver.findElement(By.className("submit-button"));
+	//
+	// // 1. Empty input (only click & submit)
+	// inputBox.clear();
+	// inputBox.click();
+	// submit_button.click();
+	// error = driver.findElement(By.xpath("//mat-error/span")).getText();
+	// actual_validations.put("empty click", error);
+	//
+	// // 2. Short input (< 20 chars)
+	// inputBox.clear();
+	// inputBox.sendKeys("shortText");
+	// submit_button.click();
+	// error = driver.findElement(By.xpath("//mat-error/span")).getText();
+	// actual_validations.put("short input", error);
+	//
+	// // 3. Long input (> 20 chars)
+	// inputBox.clear();
+	// inputBox.sendKeys("thisIsMoreThan20CharactersInput");
+	// submit_button.click();
+	// error = driver.findElement(By.xpath("//mat-error/span")).getText();
+	// actual_validations.put("long input", error);
+	//
+	// // 4. Special characters
+	// inputBox.clear();
+	// inputBox.sendKeys("Invalid@#%CharsInput!!");
+	// submit_button.click();
+	// error = driver.findElement(By.xpath("//mat-error/span")).getText();
+	// actual_validations.put("special char", error);
+	//
+	// return actual_validations;
+	// }
 
 	public String isInputBoxHaveProperValidations(String inputValue) {
 		WebElement inputBox = driver.findElement(INPUT_BOX);
@@ -281,15 +281,15 @@ public class SimBatchDataDetailsPage extends SimBatchDataDetailsPageLocators {
 	}
 
 	public Boolean isSubmitButtonEnabled() {
-//		WebElement inputBox = driver.findElement(INPUT_BOX);
-//		WebElement submit = driver.findElement(SUBMIT_BUTTON);
-//
-//		String text = inputBox.getAttribute("value");
-//
-//		if (text != null && !text.isBlank())
-//			return submit.isEnabled();
-//
-//		return false;
+		// WebElement inputBox = driver.findElement(INPUT_BOX);
+		// WebElement submit = driver.findElement(SUBMIT_BUTTON);
+		//
+		// String text = inputBox.getAttribute("value");
+		//
+		// if (text != null && !text.isBlank())
+		// return submit.isEnabled();
+		//
+		// return false;
 
 		driver.navigate().refresh();
 		return wait.until(ExpectedConditions.visibilityOfElementLocated(SUBMIT_BUTTON)).isEnabled();

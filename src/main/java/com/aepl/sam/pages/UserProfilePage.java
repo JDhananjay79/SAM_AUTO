@@ -17,7 +17,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.aepl.sam.constants.Constants;
+import com.aepl.sam.utils.Constants;
 import com.aepl.sam.locators.UserProfilePageLocators;
 
 import io.restassured.http.ContentType;
@@ -46,6 +46,7 @@ public class UserProfilePage extends UserProfilePageLocators {
 		}
 		return driver.getCurrentUrl();
 	}
+
 	public String refreshButton() {
 		try {
 			logger.info("Clicking refresh button...");
@@ -208,7 +209,7 @@ public class UserProfilePage extends UserProfilePageLocators {
 					.statusCode(200).extract().response();
 
 			// Print full response JSON on console
-//			System.out.println("API Response:\n" + response.asPrettyString());
+			// System.out.println("API Response:\n" + response.asPrettyString());
 
 			// --- Extract API Data ---
 			Map<String, String> apiData = new HashMap<>();

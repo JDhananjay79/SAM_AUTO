@@ -4,7 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class RandomGeneratorUtils {
-	private static final Logger logger = LogManager.getLogger(TableUtils.class);
+	private static final Logger logger = LogManager.getLogger(RandomGeneratorUtils.class);
 
 	public String generateRandomString(int length) {
 		String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";

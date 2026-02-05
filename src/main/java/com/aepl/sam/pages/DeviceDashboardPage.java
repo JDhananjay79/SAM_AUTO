@@ -23,7 +23,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.aepl.sam.actions.MouseActions;
-import com.aepl.sam.constants.Constants;
+import com.aepl.sam.utils.Constants;
 import com.aepl.sam.locators.DeviceDashboardPageLocators;
 import com.aepl.sam.utils.TableUtils;
 
@@ -482,7 +482,7 @@ public class DeviceDashboardPage extends DeviceDashboardPageLocators {
 
 				String cardValue = card.findElement(By.xpath(".//span[contains(@class,'kpi-value')]")).getText();
 				cardCounts.add(cardValue);
-//				System.out.println("Card Name -> " + cardName + " have count -> " + cardCounts);
+				logger.debug("Card Name -> {} have count -> {}", cardName, cardValue);
 
 				// Click on the card
 				card.click();
@@ -494,9 +494,9 @@ public class DeviceDashboardPage extends DeviceDashboardPageLocators {
 				String headerText = tableHeader.getText().trim();
 
 				if (headerText.equalsIgnoreCase(cardName)) {
-					System.out.println("✅ PASS: " + cardName + " matches table header.");
+					logger.info("✅ PASS: {} matches table header.", cardName);
 				} else {
-					System.out.println("❌ FAIL: Card " + cardName + " but header is " + headerText);
+					logger.error("❌ FAIL: Card {} but header is {}", cardName, headerText);
 					allCardsValidated = false; // mark failure but continue loop
 				}
 
@@ -512,7 +512,7 @@ public class DeviceDashboardPage extends DeviceDashboardPageLocators {
 
 	public Boolean validateGraphIsVisible() {
 		return driver.findElements(By.cssSelector(".graph-card")).stream()
-				.peek(graph -> System.out.println("Graph found: " + graph.getText()))
+				.peek(graph -> logger.info("Graph found: {}", graph.getText()))
 				.allMatch(graph -> graph.isDisplayed() && graph.isEnabled());
 	}
 
@@ -534,9 +534,9 @@ public class DeviceDashboardPage extends DeviceDashboardPageLocators {
 				String headerText = tableHeader.getText().trim();
 
 				if (headerText.equalsIgnoreCase(graphName)) {
-					System.out.println("✅ PASS: " + graphName + " matches table header.");
+					logger.info("✅ PASS: {} matches table header.", graphName);
 				} else {
-					System.out.println("❌ FAIL: Graph " + graphName + " but header is " + headerText);
+					logger.error("❌ FAIL: Graph {} but header is {}", graphName, headerText);
 					allGraphsPassed = false; // mark failure
 				}
 
@@ -581,10 +581,10 @@ public class DeviceDashboardPage extends DeviceDashboardPageLocators {
 			comm.highlightElement(searchBtn, "green");
 			return searchBtn.isDisplayed();
 		} catch (TimeoutException e) {
-			System.err.println("Search button not found: " + e.getMessage());
+			logger.error("Search button not found: {}", e.getMessage());
 			return false;
 		} catch (Exception e) {
-			System.err.println("Unexpected error while checking search button visibility: " + e.getMessage());
+			logger.error("Unexpected error while checking search button visibility: {}", e.getMessage());
 			return false;
 		}
 	}
@@ -596,10 +596,10 @@ public class DeviceDashboardPage extends DeviceDashboardPageLocators {
 			comm.highlightElement(searchBtn, "green");
 			return searchBtn.isEnabled();
 		} catch (TimeoutException e) {
-			System.err.println("Search button not found: " + e.getMessage());
+			logger.error("Search button not found: {}", e.getMessage());
 			return false;
 		} catch (Exception e) {
-			System.err.println("Unexpected error while checking search button enabled state: " + e.getMessage());
+			logger.error("Unexpected error while checking search button enabled state: {}", e.getMessage());
 			return false;
 		}
 	}
@@ -612,10 +612,10 @@ public class DeviceDashboardPage extends DeviceDashboardPageLocators {
 			comm.highlightElement(searchInput, "green");
 			return searchInput.isDisplayed();
 		} catch (TimeoutException e) {
-			System.err.println("Search input not found: " + e.getMessage());
+			logger.error("Search input not found: {}", e.getMessage());
 			return false;
 		} catch (Exception e) {
-			System.err.println("Unexpected error while checking search input visibility: " + e.getMessage());
+			logger.error("Unexpected error while checking search input visibility: {}", e.getMessage());
 			return false;
 		}
 	}
@@ -627,10 +627,10 @@ public class DeviceDashboardPage extends DeviceDashboardPageLocators {
 			comm.highlightElement(searchInput, "green");
 			return searchInput.isEnabled();
 		} catch (TimeoutException e) {
-			System.err.println("Search input not found: " + e.getMessage());
+			logger.error("Search input not found: {}", e.getMessage());
 			return false;
 		} catch (Exception e) {
-			System.err.println("Unexpected error while checking search input enabled state: " + e.getMessage());
+			logger.error("Unexpected error while checking search input enabled state: {}", e.getMessage());
 			return false;
 		}
 	}
@@ -652,27 +652,27 @@ public class DeviceDashboardPage extends DeviceDashboardPageLocators {
 			String path = "//div/h6[contains(@class, 'component-title')]";
 			WebElement titleElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(path)));
 			String title = titleElement.getText().trim();
-			System.out.println("📌 Current card title: " + title);
+			logger.info("📌 Current card title: {}", title);
 
 			// Pick correct search term
 			String searchTerm;
 			switch (title) {
-			case "Total Production Devices":
-				searchTerm = imei;
-				break;
-			case "Total Dispatched Devices":
-			case "Total Installed Devices":
-				searchTerm = fallbackDeviceIMEI;
-				break;
-			case "Total Discarded Devices":
-				searchTerm = fallbackDeviceUIN;
-				break;
-			case "Device Activity Overview":
-				searchTerm = imei;
-				break;
-			default:
-				System.err.println("⚠️ Unknown card title: " + title);
-				return false;
+				case "Total Production Devices":
+					searchTerm = imei;
+					break;
+				case "Total Dispatched Devices":
+				case "Total Installed Devices":
+					searchTerm = fallbackDeviceIMEI;
+					break;
+				case "Total Discarded Devices":
+					searchTerm = fallbackDeviceUIN;
+					break;
+				case "Device Activity Overview":
+					searchTerm = imei;
+					break;
+				default:
+					logger.warn("⚠️ Unknown card title: {}", title);
+					return false;
 			}
 
 			searchInput.sendKeys(searchTerm);
@@ -690,27 +690,27 @@ public class DeviceDashboardPage extends DeviceDashboardPageLocators {
 
 			for (WebElement result : results) {
 				String text = result.getText().trim();
-				System.out.println("Cell text: " + text);
+				logger.debug("Cell text: {}", text);
 
 				if (text.contains(uin) || text.contains(imei) || text.contains(iccid)
 						|| text.contains(fallbackDeviceUIN) || text.contains(fallbackDeviceIMEI)) {
-					System.out.println("✅ Search successful, term [" + searchTerm + "] found in results.");
+					logger.info("✅ Search successful, term [{}] found in results.", searchTerm);
 					return true;
 				}
 			}
 
-			System.out.println("❌ Search term [" + searchTerm + "] not found in results.");
+			logger.error("❌ Search term [{}] not found in results.", searchTerm);
 			return false;
 
 		} catch (TimeoutException e) {
-			System.err.println("⏱️ Search operation timed out: " + e.getMessage());
+			logger.error("⏱️ Search operation timed out: {}", e.getMessage());
 			return false;
 		} catch (StaleElementReferenceException e) {
-			System.err.println("♻️ Retrying due to stale element...");
+			logger.warn("♻️ Retrying due to stale element...");
 			// 🔄 Safer retry with limited attempts
 			return retrySearch(3);
 		} catch (Exception e) {
-			System.err.println("❌ Unexpected error: " + e.getMessage());
+			logger.error("❌ Unexpected error: {}", e.getMessage());
 			return false;
 		}
 	}
@@ -721,7 +721,7 @@ public class DeviceDashboardPage extends DeviceDashboardPageLocators {
 			try {
 				return searchDevice();
 			} catch (StaleElementReferenceException ignored) {
-				System.err.println("♻️ Attempt " + (i + 1) + " failed, retrying...");
+				logger.warn("♻️ Attempt {} failed, retrying...", (i + 1));
 			}
 		}
 		return false;
@@ -734,10 +734,10 @@ public class DeviceDashboardPage extends DeviceDashboardPageLocators {
 			comm.highlightElement(exportBtn, "green");
 			return exportBtn.isDisplayed();
 		} catch (TimeoutException e) {
-			System.err.println("Export button not found: " + e.getMessage());
+			logger.error("Export button not found: {}", e.getMessage());
 			return false;
 		} catch (Exception e) {
-			System.err.println("Unexpected error while checking export button visibility: " + e.getMessage());
+			logger.error("Unexpected error while checking export button visibility: {}", e.getMessage());
 			return false;
 		}
 	}
@@ -749,10 +749,10 @@ public class DeviceDashboardPage extends DeviceDashboardPageLocators {
 			comm.highlightElement(exportBtn, "green");
 			return exportBtn.isEnabled();
 		} catch (TimeoutException e) {
-			System.err.println("Export button not found: " + e.getMessage());
+			logger.error("Export button not found: {}", e.getMessage());
 			return false;
 		} catch (Exception e) {
-			System.err.println("Unexpected error while checking export button enabled state: " + e.getMessage());
+			logger.error("Unexpected error while checking export button enabled state: {}", e.getMessage());
 			return false;
 		}
 	}
@@ -845,11 +845,11 @@ public class DeviceDashboardPage extends DeviceDashboardPageLocators {
 			comm.highlightElement(graph, "green");
 			return graph.isDisplayed();
 		} catch (TimeoutException e) {
-			System.err.println("Device Activity Overview graph not found: " + e.getMessage());
+			logger.error("Device Activity Overview graph not found: {}", e.getMessage());
 			return false;
 		} catch (Exception e) {
-			System.err.println(
-					"Unexpected error while checking Device Activity Overview graph visibility: " + e.getMessage());
+			logger.error("Unexpected error while checking Device Activity Overview graph visibility: {}",
+					e.getMessage());
 			return false;
 		}
 	}
@@ -861,11 +861,11 @@ public class DeviceDashboardPage extends DeviceDashboardPageLocators {
 			comm.highlightElements(graphs, "solid purple");
 			return graphs.stream().allMatch(WebElement::isDisplayed);
 		} catch (TimeoutException e) {
-			System.err.println("Device Activity Overview graph not found: " + e.getMessage());
+			logger.error("Device Activity Overview graph not found: {}", e.getMessage());
 			return false;
 		} catch (Exception e) {
-			System.err.println(
-					"Unexpected error while checking Device Activity Overview graph visibility: " + e.getMessage());
+			logger.error("Unexpected error while checking Device Activity Overview graph visibility: {}",
+					e.getMessage());
 			return false;
 		}
 	}
@@ -883,69 +883,21 @@ public class DeviceDashboardPage extends DeviceDashboardPageLocators {
 			String headerText = tableHeader.getText().trim();
 
 			if (headerText.equalsIgnoreCase(graphName)) {
-				System.out.println("✅ PASS: " + graphName + " matches table header.");
+				logger.info("✅ PASS: {} matches table header.", graphName);
 				return true;
 			} else {
-				System.out.println("❌ FAIL: Graph " + graphName + " but header is " + headerText);
+				logger.error("❌ FAIL: Graph {} but header is {}", graphName, headerText);
 				return false;
 			}
 
 		} catch (TimeoutException e) {
-			System.err.println("Device Activity Overview graph not found: " + e.getMessage());
+			logger.error("Device Activity Overview graph not found: {}", e.getMessage());
 			return false;
 		} catch (Exception e) {
-			System.err.println(
-					"Unexpected error while validating Device Activity Overview graph click: " + e.getMessage());
+			logger.error("Unexpected error while validating Device Activity Overview graph click: {}", e.getMessage());
 			return false;
 		}
 	}
-
-//	public boolean validateFirmwareWiseDevicesGraphClick() {
-//		try {
-//			((JavascriptExecutor) driver).executeScript("window.scrollTo(0,0)");
-//			List<WebElement> graphs = wait
-//					.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector(".graph-card")));
-//			boolean allGraphsPassed = true;
-//
-//			for (WebElement graph : graphs) {
-//				comm.highlightElement(graph, "orange");
-//				String graphName = graph.getText().split("\n")[0].trim();
-//
-//				WebElement tableHeader = wait
-//						.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".component-title")));
-//				String headerText = tableHeader.getText().trim();
-//
-//				if (headerText.equals("Firmware Wise Devices")) {
-//					graph.click();
-//					Thread.sleep(500); // wait for table to load
-//					return true;
-//				} else {
-//					graph.click();
-//					Thread.sleep(500); // wait for table to load
-//				}
-//
-//				if (headerText.equalsIgnoreCase(graphName)) {
-//					System.out.println("✅ PASS: " + graphName + " matches table header.");
-//				} else {
-//					System.out.println("❌ FAIL: Graph " + graphName + " but header is " + headerText);
-//					allGraphsPassed = false; // mark failure
-//				}
-//
-//				// Scroll back to top
-//				((JavascriptExecutor) driver).executeScript("window.scrollTo(0,0)");
-//			}
-//
-//			return allGraphsPassed;
-//
-//		} catch (TimeoutException e) {
-//			System.err.println("Firmware Wise Devices graph not found: " + e.getMessage());
-//			return false;
-//		} catch (Exception e) {
-//			System.err
-//					.println("Unexpected error while validating Firmware Wise Devices graph click: " + e.getMessage());
-//			return false;
-//		}
-//	}
 
 	public boolean validateFirmwareWiseDevicesGraphClick() {
 		try {
@@ -974,20 +926,20 @@ public class DeviceDashboardPage extends DeviceDashboardPageLocators {
 					String headerText = tableHeader.getText().trim();
 
 					if (headerText.equalsIgnoreCase(graphName)) {
-						System.out.println("✅ PASS: Firmware Wise Devices graph opened correctly.");
+						logger.info("✅ PASS: Firmware Wise Devices graph opened correctly.");
 						return true;
 					} else {
-						System.out.println("❌ FAIL: Expected: Firmware Wise Devices, but header is: " + headerText);
+						logger.error("❌ FAIL: Expected: Firmware Wise Devices, but header is: {}", headerText);
 						return false;
 					}
 				}
 			}
 
-			System.out.println("❌ Firmware Wise Devices graph not found among listed graphs.");
+			logger.error("❌ Firmware Wise Devices graph not found among listed graphs.");
 			return false;
 
 		} catch (Exception e) {
-			System.err.println("Unexpected error while validating Firmware Wise Devices graph: " + e.getMessage());
+			logger.error("Unexpected error while validating Firmware Wise Devices graph: {}", e.getMessage());
 			return false;
 		}
 	}
@@ -1062,10 +1014,10 @@ public class DeviceDashboardPage extends DeviceDashboardPageLocators {
 		List<Map<String, String>> tableData = tableUtils.getTableData(By.xpath("//table"),
 				tableUtils.getTableHeaders(By.xpath("//table")));
 		if (tableData.isEmpty()) {
-			System.err.println("No data found in Device Activity Overview table.");
+			logger.error("No data found in Device Activity Overview table.");
 			return false;
 		} else {
-			System.out.println("Device Activity Overview table has " + tableData.size() + " rows of data.");
+			logger.info("Device Activity Overview table has {} rows of data.", tableData.size());
 			return true;
 		}
 	}
@@ -1104,14 +1056,14 @@ public class DeviceDashboardPage extends DeviceDashboardPageLocators {
 				dropdown.click();
 				return true;
 			} else {
-				System.err.println("Firmware Version dropdown is either not visible or not enabled.");
+				logger.error("Firmware Version dropdown is either not visible or not enabled.");
 				return false;
 			}
 		} catch (TimeoutException e) {
-			System.err.println("Firmware Version dropdown not found: " + e.getMessage());
+			logger.error("Firmware Version dropdown not found: {}", e.getMessage());
 			return false;
 		} catch (Exception e) {
-			System.err.println("Unexpected error while checking Firmware Version dropdown: " + e.getMessage());
+			logger.error("Unexpected error while checking Firmware Version dropdown: {}", e.getMessage());
 			return false;
 		}
 	}
@@ -1120,10 +1072,10 @@ public class DeviceDashboardPage extends DeviceDashboardPageLocators {
 		List<Map<String, String>> tableData = tableUtils.getTableData(By.xpath("//table"),
 				tableUtils.getTableHeaders(By.xpath("//table")));
 		if (tableData.isEmpty()) {
-			System.err.println("No data found in Firmware Wise Devices table.");
+			logger.error("No data found in Firmware Wise Devices table.");
 			return false;
 		} else {
-			System.out.println("Firmware Wise Devices table has " + tableData.size() + " rows of data.");
+			logger.info("Firmware Wise Devices table has {} rows of data.", tableData.size());
 			return true;
 		}
 	}

@@ -6,12 +6,63 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import com.aepl.sam.base.TestBase;
-import com.aepl.sam.constants.DealearsManagementConstants;
+import java.util.List;
+
 import com.aepl.sam.pages.CommonMethods;
 import com.aepl.sam.pages.DealersManagementPage;
 import com.aepl.sam.utils.ExcelUtility;
 
-public class DealersManagementPageTest extends TestBase implements DealearsManagementConstants {
+public class DealersManagementPageTest extends TestBase {
+	// Excel Sheet Name
+	private static final String SHEET_NAME = "Dealer_Management_Test";
+
+	// Test Case Names
+	private static final String TC_COMPANY_LOGO = "Test Company logo";
+	private static final String TC_NAV_BAR_LINK = "Test Nav Bar Link for {Dealer Management}";
+	private static final String TC_PAGE_TITLE = "Test page title for {Sim Batch Data Details}";
+	private static final String TC_COMPONENT_TITLE = "Test Page Component Title";
+	private static final String TC_VALIDATE_BUTTONS = "Test all button on page {Sim Batch Data Details}";
+	private static final String TC_VALIDATE_COMPONENTS = "Test All Components on the page {Sim Batch Data Details}";
+	private static final String TC_SEARCH_BUTTON_ENABLED = "Test search button is enabled? ";
+	private static final String TC_SEARCH_BOX_ENABLED = "Test search box is enabled? ";
+	private static final String TC_SEARCH_BOX_MULTIPLE_INPUTS = "Test input box with multiple inputs";
+	private static final String TC_TABLE_HEADERS = "Test Table headers of {Dealer Management Page}";
+	private static final String TC_TABLE_DATA = "Validate table data of Dealer Management";
+	private static final String TC_VIEW_BUTTONS = "Validate View Buttons in Dealer Management";
+	private static final String TC_DELETE_BUTTONS = "Validate Delete Buttons in Dealer Management";
+	private static final String TC_PAGINATION = "Test Pagination";
+	private static final String TC_ADD_DEALER_BUTTON_ENABLED = "Test add dealer button enabled";
+	private static final String TC_ADD_DEALER_BUTTON_VISIBLE = "Test add dealer button enabled";
+	private static final String TC_CLICK_ADD_DEALER_BUTTON = "Test Add Dealer Button";
+	private static final String TC_ALL_INPUT_BOXES = "Test all input boxes for adding new dealer details";
+	private static final String TC_FORM_VALIDATIONS = "Test all input boxes and validations for dealer form";
+	private static final String TC_SUBMIT_BUTTON_NO_DATA = "Test submit button is visible on if not data is visible";
+	private static final String TC_SUBMIT_BUTTON = "Test the submit button";
+
+	// Expected Results
+	private static final boolean EXP_LOGO_DISPLAYED = true;
+	private static final boolean EXP_NAV_BAR_LINK = true;
+	private static final String EXP_PAGE_TITLE = "Sensorise SIM Data Details";
+	private static final String EXP_COMPONENT_TITLE = "SIM Data Details";
+	private static final String EXP_VALIDATE_BUTTONS = "All buttons are displayed and enabled successfully.";
+	private static final String EXP_VALIDATE_COMPONENTS = "All components are displayed and validated successfully.";
+	private static final boolean EXP_SEARCH_BUTTON_ENABLED = true;
+	private static final boolean EXP_SEARCH_BOX_ENABLED = true;
+	private static final boolean EXP_SEARCH_BOX_MULTIPLE_INPUTS = true;
+	private static final List<String> EXP_TABLE_HEADERS = List.of("FULL NAME", "EMAIL", "MOBILE NO.", "CREATED BY",
+			"STATUS", "ACTION");
+	private static final boolean EXP_TABLE_DATA = true;
+	private static final boolean EXP_VIEW_BUTTONS = true;
+	private static final boolean EXP_DELETE_BUTTONS = true;
+	private static final boolean EXP_PAGINATION = true;
+	private static final boolean EXP_ADD_DEALER_BUTTON_ENABLED = true;
+	private static final boolean EXP_ADD_DEALER_BUTTON_VISIBLE = true;
+	private static final String EXP_CLICK_ADD_DEALER_BUTTON = "Save Dealers Details";
+	private static final boolean EXP_ALL_INPUT_BOXES = true;
+	private static final boolean EXP_FORM_VALIDATIONS = true;
+	private static final boolean EXP_SUBMIT_BUTTON_NO_DATA = true;
+	private static final boolean EXP_SUBMIT_BUTTON = true;
+
 	private ExcelUtility excelUtility;
 	private DealersManagementPage dealerPage;
 	private CommonMethods comm;

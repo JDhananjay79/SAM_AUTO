@@ -1,17 +1,45 @@
 package com.aepl.sam.tests;
 
+import com.aepl.sam.base.TestBase;
+
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import com.aepl.sam.base.TestBase;
-import com.aepl.sam.constants.OtaConstants;
+import com.aepl.sam.utils.Constants;
 import com.aepl.sam.pages.CommonMethods;
 import com.aepl.sam.pages.OtaPage;
 import com.aepl.sam.utils.ExcelUtility;
 
-public class OtaPageTest extends TestBase implements OtaConstants {
+public class OtaPageTest extends TestBase {
+	private static final String SHEET_NAME = "OTA_Test";
+
+	private static final String TC_LOGO = "Verify Company Logo on Webpage";
+	private static final String TC_PAGE_TITLE = "Verify Page Title on Webpage";
+	private static final String TC_NAV_BAR = "Test Navigate to Device Utility Tab";
+	private static final String TC_VALIDATE_BUTTONS = "Test All Buttons on OTA Page";
+	private static final String TC_VALIDATE_COMPONENTS = "Test All Components on OTA Page";
+	private static final String TC_PAGINATION = "Test Pagination on OTA Page";
+	private static final String TC_MANUAL_OTA = "Test Manual OTA Feature";
+	private static final String TC_OTA_DETAILS = "Test OTA Details";
+	private static final String TC_OTA_PAGINATION = "Test OTA Pagination";
+	private static final String TC_EXPORT = "Test Export Button on OTA Page";
+	private static final String TC_ABORT = "Test Abort Button on OTA Page";
+	private static final String TC_BATCH = "Test OTA Batch Functionality";
+
+	private static final String EXP_LOGO_DISPLAYED = "Logo Displayed";
+	private static final String EXP_PAGE_TITLE = "AEPL Sampark Diagnostic Cloud";
+	private static final String EXP_NAV_BAR = Constants.OTA_LINK;
+	private static final String EXP_VALIDATE_BUTTONS = "All buttons are displayed and enabled successfully.";
+	private static final String EXP_VALIDATE_COMPONENTS = "All components are displayed and validated successfully.";
+	private static final String EXP_PAGINATION = "Pagination is working correctly.";
+	private static final String EXP_MANUAL_OTA = "New OTA added successfully for IMEI: " + Constants.IMEI;
+	private static final String EXP_OTA_DETAILS = "OTA details displayed successfully.";
+	private static final String EXP_EXPORT = "Export functionality is working correctly.";
+	private static final String EXP_ABORT = "Abort functionality is working correctly.";
+	private static final String EXP_BATCH = "OTA batch functionality is working correctly.";
+
 	private ExcelUtility excelUtility;
 	private OtaPage ota;
 	private CommonMethods comm;

@@ -6,12 +6,73 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import com.aepl.sam.base.TestBase;
-import com.aepl.sam.constants.CustomerMasterConstants;
 import com.aepl.sam.pages.CommonMethods;
 import com.aepl.sam.pages.CustomerMasterPage;
+import com.aepl.sam.utils.Constants;
 import com.aepl.sam.utils.ExcelUtility;
 
-public class CustomerMasterPageTest extends TestBase implements CustomerMasterConstants {
+public class CustomerMasterPageTest extends TestBase {
+	// Excel Sheet Name
+	private static final String CUSTOMER_MASTER_EXCEL_SHEET = "Customer_Master_Test";
+
+	// Test Case Names
+	private static final String TC_PAGE_LOGO = "Verify Company Logo on Webpage";
+	private static final String TC_PAGE_TITILE = "Verify Page Title on Webpage";
+	private static final String TC_NAV_BAR = "Verify Navigation Bar Click Functionality";
+	private static final String TC_ADD_CUSTOMER = "Verify Add New Customer Functionality";
+	private static final String TC_VALIDATE_BUTTONS = "Verify Buttons on Customer Master Page";
+	private static final String TC_INPUT_BOX_ERROR = "Verify Input Box Error Handling";
+	private static final String TC_SEARCH_CUSTOMER = "Verify Search Customer Functionality";
+	private static final String TC_EDIT_CUSTOMER = "Verify Edit Customer Functionality";
+	private static final String TC_DELETE_CUSTOMER = "Verify Delete Customer Functionality";
+	private static final String TC_VALIDATE_COMPONENTS = "Verify Components on Customer Master Page";
+	private static final String TC_PAGINATION = "Verify Pagination Functionality";
+	private static final String TC_VERSION = "Verify Version Functionality";
+	private static final String TC_COPYRIGHT = "Verify Copyright Functionality";
+	private static final String TC_VALIDATE_CUST = "Verify Edited Customer Validation";
+	private static final String TC_EMPTY_INPUT_ERROR = "Verify Empty Input Box Error";
+	private static final String TC_WRONG_INPUT_ERROR = "Verify Wrong Input Box Error";
+	private static final String TC_COMPONENT_TITLE = "Verify Component Title";
+	private static final String TC_SEARCH_INPUT_ENABLED = "Verify Search Input Enabled";
+	private static final String TC_SEARCH_INPUT_VISIBLE = "Verify Search Input Visible";
+	private static final String TC_SEARCH_BUTTON_ENABLED = "Verify Search Button Enabled";
+	private static final String TC_SEARCH_BUTTON_VISIBLE = "Verify Search Button Visible";
+	private static final String TC_EDIT_BUTTON_ENABLED = "Verify Edit Button Enabled";
+	private static final String TC_EDIT_BUTTON_VISIBLE = "Verify Edit Button Visible";
+	private static final String TC_DELETE_BUTTON_ENABLED = "Verify Delete Button Enabled";
+	private static final String TC_DELETE_BUTTON_VISIBLE = "Verify Delete Button Visible";
+
+	// Expected Results
+	private static final String EXP_LOGO_DISPLAYED = "Logo Displayed";
+	private static final String EXP_PAGE_TITLE = "AEPL Sampark Diagnostic Cloud";
+	private static final String EXP_NAV_BAR_URL = "http://aepltest.accoladeelectronics.com:6102/customer-master";
+	private static final String EXP_ADD_CUSTOMER = "Customer Added Successfully";
+	private static final String EXP_VALIDATE_BUTTONS = "All buttons are displayed and enabled successfully.";
+	private static final String EXP_INPUT_BOX_ERROR = " This field is required and can't be empty.";
+	private static final String EXP_SEARCH_CUSTOMER = "Customer Found";
+	private static final String EXP_EDIT_CUSTOMER = "Customer Edited Successfully";
+	private static final String EXP_DELETE_CUSTOMER = "Customer Deleted Successfully";
+	private static final String EXP_VALIDATE_COMPONENTS = "All components are displayed and validated successfully.";
+	private static final String EXP_PAGINATION = "Pagination works correctly";
+	private static final String EXP_VERSION = Constants.EXP_VERSION_TEXT;
+	private static final String EXP_COPYRIGHT = Constants.EXP_COPYRIGHT_TEXT;
+	private static final String EXP_VALIDATION = "Customer data validated successfully";
+	private static final String EXP_EMPTY_INPUT_ERROR = "This field is required and can't be empty.";
+	private static final String EXP_WRONG_INPUT_ERROR = "Only alphabets and spaces are allowed.";
+	private static final String EXP_COMPONENT_TITLE = "Customer List";
+	private static final String EXP_SEARCH_INPUT_ENABLED = "input box is enabled";
+	private static final String EXP_SEARCH_INPUT_NOT_ENABLED = "input box is not enabled";
+	private static final String EXP_SEARCH_INPUT_VISIBLE = "input box is displayed";
+	private static final String EXP_SEARCH_INPUT_NOT_VISIBLE = "input box is not displayed";
+	private static final String EXP_SEARCH_BUTTON_ENABLED = "search button is enabled";
+	private static final String EXP_SEARCH_BUTTON_NOT_ENABLED = "search button is not enabled";
+	private static final String EXP_SEARCH_BUTTON_VISIBLE = "search button is visible";
+	private static final String EXP_SEARCH_BUTTON_NOT_VISIBLE = "search button is not visible";
+	private static final String EXP_EDIT_BUTTON_VISIBLE = "edit button is visible";
+	private static final String EXP_EDIT_BUTTON_NOT_VISIBLE = "edit button is not visible";
+	private static final String EXP_DELETE_BUTTON_VISIBLE = "delete button is visible";
+	private static final String EXP_DELETE_BUTTON_NOT_VISIBLE = "delete button is not visible";
+
 	private CustomerMasterPage customerMasterPage;
 	private CommonMethods comm;
 	private ExcelUtility excelUtility;

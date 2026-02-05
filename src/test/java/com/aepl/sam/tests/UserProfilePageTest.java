@@ -6,12 +6,53 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import com.aepl.sam.base.TestBase;
-import com.aepl.sam.constants.UserProfileConstants;
+import com.aepl.sam.utils.Constants;
 import com.aepl.sam.pages.CommonMethods;
 import com.aepl.sam.pages.UserProfilePage;
 import com.aepl.sam.utils.ExcelUtility;
 
-public class UserProfilePageTest extends TestBase implements UserProfileConstants {
+public class UserProfilePageTest extends TestBase {
+
+	private static final String SHEET_NAME = "User_Profile_Test";
+
+	private static final String TC_LOGO = "Verify Company Logo on Webpage";
+	private static final String EXP_LOGO = "Logo Displayed";
+
+	private static final String TC_PAGE_TITLE = "Verify Page Title on Webpage";
+	private static final String EXP_PAGE_TITLE = "AEPL Sampark Diagnostic Cloud";
+
+	private static final String TC_NAVBAR = "Verify Navbar Link Navigation";
+	private static final String EXP_NAVBAR = Constants.USR_PROFILE;
+
+	private static final String TC_BACK_BUTTON = "Verify Back Button Navigation";
+	private static final String EXP_BACK_BUTTON = "Back button navigated successfully.";
+
+	private static final String TC_REFRESH = "Verify Refresh Button Functionality";
+	private static final String EXP_REFRESH = "Page refreshed successfully.";
+
+	private static final String TC_CHANGE_PASSWORD = "Verify Change Password Functionality";
+	private static final String EXP_CHANGE_PASSWORD = "Password changed successfully.";
+
+	private static final String TC_UPLOAD_PROFILE_PIC = "Verify Upload Profile Picture Functionality";
+	private static final String EXP_UPLOAD_PROFILE_PIC = "Profile picture uploaded successfully.";
+
+	private static final String TC_UPDATE_PROFILE = "Verify Update Profile Details Functionality";
+	private static final String EXP_UPDATE_PROFILE = "Profile updated successfully.";
+
+	private static final String TC_PAGINATION = "Verify Pagination Functionality";
+	private static final String EXP_PAGINATION = "Pagination works correctly";
+
+	private static final String TC_VERSION = "Verify Version Functionality";
+	private static final String EXP_VERSION = Constants.EXP_VERSION_TEXT;
+
+	private static final String TC_COPYRIGHT = "Verify Copyright Functionality";
+	private static final String EXP_COPYRIGHT = Constants.EXP_COPYRIGHT_TEXT;
+
+	private static final String TC_VALIDATE_BUTTONS = "Verify Buttons on Customer Master Page";
+	private static final String EXP_VALIDATE_BUTTONS = "All buttons are displayed and enabled successfully.";
+
+	private static final String TC_USER_PROFILE_DATA = "Test the user profile data";
+	private static final String EXP_USER_PROFILE_DATA = "User Verified successfully";
 
 	private ExcelUtility excelUtility;
 	private UserProfilePage userProf;

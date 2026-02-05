@@ -6,13 +6,36 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import com.aepl.sam.base.TestBase;
-import com.aepl.sam.constants.Constants;
-import com.aepl.sam.constants.GroupManagementConstants;
+import com.aepl.sam.utils.Constants;
 import com.aepl.sam.pages.CommonMethods;
 import com.aepl.sam.pages.GroupManagementPage;
 import com.aepl.sam.utils.ExcelUtility;
 
-public class GroupManagementPageTest extends TestBase implements GroupManagementConstants {
+public class GroupManagementPageTest extends TestBase {
+	private static final String SHEET_NAME = "Group_Management_Test";
+
+	private static final String TC_LOGO = "Verify Company Logo on Webpage";
+	private static final String TC_PAGE_TITLE = "Verify Page Title on Webpage";
+	private static final String TC_NAV_BAR = "Verify Navigation Bar Click Functionality";
+	private static final String TC_BACK = "Verify Back Button Functionality";
+	private static final String TC_REFRESH = "Verify Refresh Button Functionality";
+	private static final String TC_ADD_ROLE = "Verify Add User Role Functionality";
+	private static final String TC_SEARCH_ROLE = "Verify Search Role Group Functionality";
+	private static final String TC_DELETE_ROLE = "Verify Delete Role Group Functionality";
+	private static final String TC_PAGINATION = "Verify Pagination Functionality";
+	private static final String TC_VERSION = "Verify Version Functionality";
+	private static final String TC_COPYRIGHT = "Verify Copyright Functionality";
+
+	private static final String EXP_LOGO_DISPLAYED = "Logo Displayed";
+	private static final String EXP_PAGE_TITLE = "AEPL Sampark Diagnostic Cloud";
+	private static final String EXP_NAV_BAR = Constants.ROLE_GROUP;
+	private static final String EXP_BACK = Constants.ROLE_GROUP;
+	private static final String EXP_REFRESH = Constants.ROLE_GROUP;
+	private static final String EXP_ADD_ROLE = "User Role Group Added Successfully";
+	private static final String EXP_SEARCH_ROLE = "Role group found";
+	private static final String EXP_DELETE_ROLE = "Role group deleted successfully";
+	private static final String EXP_PAGINATION = "Pagination works correctly";
+
 	private ExcelUtility excelUtility;
 	private GroupManagementPage groupManagement;
 	private CommonMethods comm;

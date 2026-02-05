@@ -21,7 +21,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.aepl.sam.actions.CalendarActions;
-import com.aepl.sam.constants.Constants;
+import com.aepl.sam.utils.Constants;
 import com.aepl.sam.locators.ProductionDevicePageLocators;
 import com.aepl.sam.utils.RandomGeneratorUtils;
 import com.aepl.sam.utils.TableUtils;
@@ -63,7 +63,7 @@ public class ProductionDevicePage extends ProductionDevicePageLocators {
 		// Search for both input and mat-select fields
 		String xpath = String.format("//*[@id='%1$s' or @name='%1$s'or @class='%1$s' or @formcontrolname='%1$s']",
 				fieldName);
-//		System.out.println("XPath used for locating the field: " + xpath);
+		// System.out.println("XPath used for locating the field: " + xpath);
 
 		List<WebElement> elements = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(xpath)));
 
@@ -74,7 +74,7 @@ public class ProductionDevicePage extends ProductionDevicePageLocators {
 		WebElement element = elements.get(0);
 		String tagName = element.getTagName();
 
-//		System.out.println("Tag name of the located element: " + tagName);
+		// System.out.println("Tag name of the located element: " + tagName);
 		if ("mat-select".equalsIgnoreCase(tagName)) {
 			return validateMatSelectField(element, inputValue);
 		} else {
@@ -302,9 +302,11 @@ public class ProductionDevicePage extends ProductionDevicePageLocators {
 			logger.info("Toast message after adding device: {}", toast_msg.getText());
 			return toast_msg.getText();
 
-//			WebElement ProdDevicePageTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(PAGE_TITLE));
-//			logger.info("Production device added, page title: {}", ProdDevicePageTitle.getText());
-//			return ProdDevicePageTitle.getText();
+			// WebElement ProdDevicePageTitle =
+			// wait.until(ExpectedConditions.visibilityOfElementLocated(PAGE_TITLE));
+			// logger.info("Production device added, page title: {}",
+			// ProdDevicePageTitle.getText());
+			// return ProdDevicePageTitle.getText();
 
 		} else if (para.equalsIgnoreCase("update")) {
 			logger.info("Updating Production Device details...");
@@ -373,10 +375,12 @@ public class ProductionDevicePage extends ProductionDevicePageLocators {
 			commonMethods.highlightElement(toast_msg, "solid purple");
 			logger.info("Toast message after adding device: {}", toast_msg.getText());
 			return toast_msg.getText();
-			
-//			WebElement ProdDevicePageTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(PAGE_TITLE));
-//			logger.info("Production device updated, page title: {}", ProdDevicePageTitle.getText());
-//			return ProdDevicePageTitle.getText();
+
+			// WebElement ProdDevicePageTitle =
+			// wait.until(ExpectedConditions.visibilityOfElementLocated(PAGE_TITLE));
+			// logger.info("Production device updated, page title: {}",
+			// ProdDevicePageTitle.getText());
+			// return ProdDevicePageTitle.getText();
 		}
 
 		driver.navigate().back();

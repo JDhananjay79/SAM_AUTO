@@ -12,13 +12,72 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import com.aepl.sam.base.TestBase;
-import com.aepl.sam.constants.Constants;
-import com.aepl.sam.constants.DeviceDetailsConstants;
+import com.aepl.sam.utils.Constants;
+
 import com.aepl.sam.pages.CommonMethods;
 import com.aepl.sam.pages.DeviceDetailsPage;
 import com.aepl.sam.utils.ExcelUtility;
 
-public class DeviceDetailsPageTest extends TestBase implements DeviceDetailsConstants {
+public class DeviceDetailsPageTest extends TestBase {
+	// Excel Sheet Name
+	private static final String DEVICE_DETAILS_EXCEL_SHEET = "Device_Details_Test";
+
+	// Test Case Names
+	private static final String TC_LOGO = "Verify Company Logo on Webpage";
+	private static final String TC_PAGE_TITLE = "Verify Page Title on Webpage";
+	private static final String TC_REFRESH_BUTTON = "Verify Refresh Button Functionality";
+	private static final String TC_SEARCH_VIEW_DEVICE = "Search and View Device";
+	private static final String TC_ALL_BUTTONS = "Verify All Buttons on Device Details Page";
+	private static final String TC_COMPONENT_TITLES = "Verify All Component Title on Device Details Page";
+	private static final String TC_ALL_CARDS = "Verify All Cards on Device Details Page";
+
+	private static final String TC_EXPORT_BUTTON = "Verify Last 50 Login Packets on Device Details Page";
+	private static final String TC_VIEW_LOGIN_PACKET = "Verify View Login Packet on Device Details Page";
+	private static final String TC_PAGINATION = "Verify Pagination on Device Details Page";
+	private static final String TC_VERSION = "Verify Version on Device Details Page";
+	private static final String TC_COPYRIGHT = "Verify Copyright on Device Details Page";
+	private static final String TC_HEALTH_PACKET = "Verify Health Packet";
+	private static final String TC_BAR_GRAPH = "Verify Bar Graph on Device Details Page";
+
+	private static final String TC_SEARCH_INPUT_ENABLED = "Search Input Enabled";
+
+	private static final String TC_SEARCH_INPUT_VISIBLE = "Search Input Visible";
+
+	private static final String TC_SEARCH_BUTTON_ENABLED = "Search Button Enabled";
+
+	private static final String TC_SEARCH_BUTTON_VISIBLE = "Search Button Visible";
+
+	// Expected Results
+	private static final String LOGO_DISPLAYED = "Logo Displayed";
+	private static final String LOGO_NOT_DISPLAYED = "Logo Not Displayed";
+	private static final String EXP_PAGE_TITLE = "AEPL Sampark Diagnostic Cloud";
+	private static final String EXP_REFRESH_CLICKED = "Clicked on the refreshed button";
+	private static final String EXP_SEARCH_VIEW = "Device details displayed successfully";
+	private static final String EXP_ALL_BUTTONS = "All buttons are displayed and enabled successfully.";
+	private static final String EXP_COMPONENT_TITLES = "All components are displayed and validated successfully.";
+	private static final String EXP_CARDS = "All cards are displayed and validated successfully.";
+
+	private static final String EXP_EXPORT = "Last 50 login packets are displayed successfully";
+	private static final String EXP_VIEW_LOGIN = "All login packets viewed and saved successfully";
+	private static final String EXP_PAGINATION = "Pagination is displayed and functional";
+	private static final String EXP_HEALTH_RESULT = "Health packet details are displayed successfully";
+	private static final String EXP_BAR_GRAPH = "Device Activity Overview";
+	private static final String EXP_SEARCH_BUTTON_ENABLED = "Search Button Enabled";
+
+	private static final String EXP_SEARCH_BUTTON_NOT_ENABLED = "Search Button Not Enabled";
+
+	private static final String EXP_SEARCH_BUTTON_VISIBLE = "Search Button Visible";
+
+	private static final String EXP_SEARCH_BUTTON_NOT_VISIBLE = "Search Button Not Visible";
+
+	private static final String EXP_SEARCH_INPUT_ENABLED = "Search Input Enabled";
+
+	private static final String EXP_SEARCH_INPUT_NOT_ENABLED = "Search Input Not Enabled";
+
+	private static final String EXP_SEARCH_INPUT_VISIBLE = "Search Input Visible";
+
+	private static final String EXP_SEARCH_INPUT_NOT_VISIBLE = "Search Input Not Visible";
+
 	private DeviceDetailsPage deviceDetails;
 	private CommonMethods comm;
 	private ExcelUtility excelUtility;
@@ -252,7 +311,7 @@ public class DeviceDetailsPageTest extends TestBase implements DeviceDetailsCons
 
 	// Validate the OTA button link is clickable on the top of the page along with
 	// the
-//	@Test(priority = 29)
+	// @Test(priority = 29)
 	public void testIsOTAButtonClickable() {
 		executor.executeTest("Validate OTA button is clickable", true, deviceDetails::isOTAButtonClickable);
 	}

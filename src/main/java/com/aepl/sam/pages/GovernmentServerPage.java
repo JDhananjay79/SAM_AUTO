@@ -29,14 +29,13 @@ import org.testng.asserts.SoftAssert;
 
 import com.aepl.sam.actions.CalendarActions;
 import com.aepl.sam.actions.MouseActions;
-import com.aepl.sam.constants.Constants;
-import com.aepl.sam.constants.GovernmentServerConstants;
 import com.aepl.sam.locators.GovernmentServerPageLocators;
 import com.aepl.sam.utils.ConfigProperties;
+import com.aepl.sam.utils.Constants;
 import com.aepl.sam.utils.RandomGeneratorUtils;
 import com.aepl.sam.utils.TableUtils;
 
-public class GovernmentServerPage extends GovernmentServerPageLocators implements GovernmentServerConstants {
+public class GovernmentServerPage extends GovernmentServerPageLocators {
 	private WebDriver driver;
 	private WebDriverWait wait;
 	private CalendarActions calAct;
@@ -448,25 +447,25 @@ public class GovernmentServerPage extends GovernmentServerPageLocators implement
 		return returnData;
 	}
 
-//	public List<Map<String, String>> validateTableDataOfGovernmentServerTable() {
-//		List<Map<String, String>> data = table.getTableData(By.xpath("//table"),
-//				table.getTableHeaders(By.xpath("//table")));
-//
-//		List<Map<String, String>> returnData = new ArrayList<>();
-//		if (data != null && !data.isEmpty()) {
-//			Map<String, String> normalizedRow = new LinkedHashMap<>();
-//
-//			data.get(0).forEach((k, v) -> {
-//				if (!"ACTION".equalsIgnoreCase(k)) { // Ignore the ACTION column
-//					normalizedRow.put(k, String.valueOf(v));
-//				}
-//			});
-//
-//			returnData.add(normalizedRow);
-//		}
-//
-//		return returnData;
-//	}
+	// public List<Map<String, String>> validateTableDataOfGovernmentServerTable() {
+	// List<Map<String, String>> data = table.getTableData(By.xpath("//table"),
+	// table.getTableHeaders(By.xpath("//table")));
+	//
+	// List<Map<String, String>> returnData = new ArrayList<>();
+	// if (data != null && !data.isEmpty()) {
+	// Map<String, String> normalizedRow = new LinkedHashMap<>();
+	//
+	// data.get(0).forEach((k, v) -> {
+	// if (!"ACTION".equalsIgnoreCase(k)) { // Ignore the ACTION column
+	// normalizedRow.put(k, String.valueOf(v));
+	// }
+	// });
+	//
+	// returnData.add(normalizedRow);
+	// }
+	//
+	// return returnData;
+	// }
 
 	public boolean isEyeButtonsAreVisibleOnTable() {
 		return table.areViewButtonsEnabled(By.xpath("//table"));
@@ -848,7 +847,8 @@ public class GovernmentServerPage extends GovernmentServerPageLocators implement
 		comm.highlightElement(add_firm, "solid purple");
 		add_firm.click();
 
-		WebElement component_title = driver.findElements(COMPONENT_TITLE).getLast();
+		List<WebElement> componentTitles = driver.findElements(COMPONENT_TITLE);
+		WebElement component_title = componentTitles.get(componentTitles.size() - 1);
 		js.executeScript("arguments[0].scrollIntoView(true);", component_title);
 		comm.highlightElement(component_title, "solid purple");
 		String title = component_title.getText();
@@ -1041,21 +1041,19 @@ public class GovernmentServerPage extends GovernmentServerPageLocators implement
 			comm.highlightElement(fileUpload, "solid purple");
 
 			// Upload the .bin file directly
-			fileUpload.sendKeys(BIN_FILE_PATH);
-			logger.info("File path sent successfully: {}", BIN_FILE_PATH);
-
 			// Wait for the uploaded file name to appear in the readonly text box
 			WebElement uploadedFileName = wait.until(
 					ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@formcontrolname='fileName']")));
 			comm.highlightElement(uploadedFileName, "solid purple");
 
-			String fileNameText = uploadedFileName.getAttribute("value").trim();
-			System.out.println("Uploaded File Name: " + fileNameText);
+			String fileNameText = uploadedFileName.getAttribute("value");
+			logger.info("Uploaded File Name: {}", fileNameText);
 
 			// Assert and return result
-			softAssert.assertEquals(fileNameText, EXPECTED_FILE_NAME, "Uploaded file name does not match expected");
+			softAssert.assertEquals(fileNameText, Constants.EXPECTED_FILE_NAME,
+					"Uploaded file name does not match expected");
 
-			if (fileNameText.equals(EXPECTED_FILE_NAME)) {
+			if (fileNameText.equals(Constants.EXPECTED_FILE_NAME)) {
 				logger.info("✅ File uploaded successfully: {}", fileNameText);
 				return true;
 			} else {
@@ -1080,7 +1078,6 @@ public class GovernmentServerPage extends GovernmentServerPageLocators implement
 		comm.highlightElement(releaseDateInput, "solid purple");
 
 		String selectedDate = releaseDateInput.getAttribute("value");
-//		System.out.println("Selected Release Date: " + selectedDate);
 		LocalDate currentDate = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		String formattedCurrentDate = currentDate.format(formatter);
@@ -1088,7 +1085,6 @@ public class GovernmentServerPage extends GovernmentServerPageLocators implement
 		softAssert.assertEquals(selectedDate, formattedCurrentDate,
 				"Release Date field does not have the current date selected");
 
-//		System.out.println("formatted Date: " + formattedCurrentDate);
 		return selectedDate.equals(formattedCurrentDate);
 	}
 
@@ -1182,14 +1178,15 @@ public class GovernmentServerPage extends GovernmentServerPageLocators implement
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("description")))
 					.sendKeys("This is a test firmware description.");
 
-//			driver.findElement(By.xpath("//button/mat-icon[contains(text(), 'attach')]")).click();
-//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@formcontrolname='fileName']")))
-//					.sendKeys(BIN_FILE_PATH);
+			// driver.findElement(By.xpath("//button/mat-icon[contains(text(),
+			// 'attach')]")).click();
+			// wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@formcontrolname='fileName']")))
+			// .sendKeys(BIN_FILE_PATH);
 
 			WebElement fileInput = driver
 					.findElement(By.xpath("//input[@type='file' and @formcontrolname='fileName']"));
 			((JavascriptExecutor) driver).executeScript("arguments[0].style.display = 'block';", fileInput);
-			fileInput.sendKeys(BIN_FILE_PATH);
+			fileInput.sendKeys(Constants.BIN_FILE_PATH);
 
 			wait.until(ExpectedConditions.visibilityOfElementLocated(RELEASE_DATE_INPUT))
 					.sendKeys(LocalDate.now().minusDays(1).format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
@@ -1205,7 +1202,7 @@ public class GovernmentServerPage extends GovernmentServerPageLocators implement
 			softAssert.assertEquals(toastText, "Data Fetched Successfully", "No toast message appeared on screen");
 			return toastText;
 		} catch (Exception e) {
-			System.err.println("Error while filling firmware details: " + e.getMessage());
+			logger.error("Error while filling firmware details: {}", e.getMessage());
 			return null;
 		}
 	}

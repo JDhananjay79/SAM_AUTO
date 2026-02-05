@@ -9,13 +9,35 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import com.aepl.sam.base.TestBase;
-import com.aepl.sam.constants.Constants;
-import com.aepl.sam.constants.DispatchDeviceConstants;
+import com.aepl.sam.utils.Constants;
 import com.aepl.sam.pages.CommonMethods;
+
 import com.aepl.sam.pages.DispatchedDevicesPage;
 import com.aepl.sam.utils.ExcelUtility;
 
-public class DispatchedDevicesPageTest extends TestBase implements DispatchDeviceConstants {
+public class DispatchedDevicesPageTest extends TestBase {
+	// Test Case Names (TC_)
+	private static final String TC_LOGO = "Verify Company Logo on Webpage";
+	private static final String TC_PAGE_TITLE = "Verify Page Title on Webpage";
+	private static final String TC_NAV_BAR_LINK = "Test Navigation to Device Utility Tab";
+
+	private static final String TC_VALIDATE_BUTTONS = "Test All Buttons";
+	private static final String TC_COMPONENT_TITLES = "Test All Components";
+
+	private static final String TC_VERSION = "Verify Application Version Display";
+	private static final String TC_COPYRIGHT = "Verify Copyright Text";
+
+	// Expected Values (EXP_)
+	private static final String LOGO_DISPLAYED = "Logo Displayed";
+	private static final String LOGO_NOT_DISPLAYED = "Logo Not Displayed";
+	private static final String EXP_PAGE_TITLE = "AEPL Sampark Diagnostic Cloud";
+
+	private static final String EXP_VALIDATE_BUTTONS = "All buttons are displayed and enabled successfully.";
+	private static final String EXP_COMPONENT_TITLES = "All components are displayed and validated successfully.";
+
+	private static final String EXP_VERSION = "Version: 1.5.0";
+	private static final String EXP_COPYRIGHT = "Accolade Electronics Pvt. Ltd.";
+
 	private ExcelUtility excelUtility;
 	private DispatchedDevicesPage dispatchedDevicePage;
 	private CommonMethods comm;
@@ -251,7 +273,7 @@ public class DispatchedDevicesPageTest extends TestBase implements DispatchDevic
 	 * NOTE : glance this test case later... for now even on lots of try it does not
 	 * resolve and find the error message.
 	 **/
-//	@Test(priority = 31)
+	// @Test(priority = 31)
 	public void testFileUploadInputErrorsOnBulkUploadPage() {
 		executor.executeTest("Test file upload input errors on bulk upload page", "This field is mandatory.",
 				() -> dispatchedDevicePage.validateSingleInputBox("file", " "));
@@ -488,7 +510,7 @@ public class DispatchedDevicesPageTest extends TestBase implements DispatchDevic
 
 	// validate the confirmation popup on clicking delete button for each device on
 	// dispatched device list on dispatched device page
-//	@Test(priority = 57)
+	// @Test(priority = 57)
 	public void testCancelDeletePopup() {
 		executor.executeTest("Verify delete popup opens and cancel button dismisses the popup", "Are You Sure?", () -> {
 			String popupText = dispatchedDevicePage.openDeletePopupAndGetText();
@@ -507,8 +529,8 @@ public class DispatchedDevicesPageTest extends TestBase implements DispatchDevic
 	}
 
 	// validate the pagination on dispatched device list on dispatched device page
-//	 when more data is present
-//	@Test(priority = 59)
+	// when more data is present
+	// @Test(priority = 59)
 	public void testPaginationOnDispatchedDeviceList() {
 		executor.executeTest("Test pagination on the dispatched device list table", true, () -> {
 			try {

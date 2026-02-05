@@ -53,7 +53,7 @@ public class CustomerMasterPage extends CustomerMasterLocators {
 		logger.info("Attempting to add a new customer: {}", randomName);
 
 		try {
-//			clickElement(ADD_CUSTOMER_BTN);
+			// clickElement(ADD_CUSTOMER_BTN);
 			fillInputField(CUSTOMER_NAME, randomName);
 
 			WebElement saveButton = wait.until(ExpectedConditions.elementToBeClickable(SAVE_BTN));
@@ -210,13 +210,14 @@ public class CustomerMasterPage extends CustomerMasterLocators {
 	}
 
 	public void validateCustomerTable() {
-		List<Map<String, String>> customerData = tableUtils.getTableData(TABLE_LOCATOR, tableUtils.getTableHeaders(TABLE_LOCATOR));
+		List<Map<String, String>> customerData = tableUtils.getTableData(TABLE_LOCATOR,
+				tableUtils.getTableHeaders(TABLE_LOCATOR));
 
 		for (int i = 0; i < customerData.size(); i++) {
 			Map<String, String> row = customerData.get(i);
-			System.out.println("Row " + (i + 1));
+			logger.debug("Row {}", (i + 1));
 			for (Map.Entry<String, String> entry : row.entrySet()) {
-				System.out.println((i + 1) + "'th row - " + entry.getKey() + ": " + entry.getValue());
+				logger.debug("{}'th row - {}: {}", (i + 1), entry.getKey(), entry.getValue());
 			}
 		}
 	}
@@ -239,22 +240,22 @@ public class CustomerMasterPage extends CustomerMasterLocators {
 
 	public boolean isEditButtonEnabled() {
 		return wait.until(ExpectedConditions.visibilityOfElementLocated(EYE_ICON)).isEnabled();
-//		return wait.driver.findElement(EYE_ICON).isEnabled();
+		// return wait.driver.findElement(EYE_ICON).isEnabled();
 	}
 
 	public boolean isEditButtonDisplayed() {
 		return wait.until(ExpectedConditions.visibilityOfElementLocated(EYE_ICON)).isDisplayed();
-//		return driver.findElement(EYE_ICON).isDisplayed();
+		// return driver.findElement(EYE_ICON).isDisplayed();
 	}
 
 	public boolean isDeleteButtonEnabled() {
 		return wait.until(ExpectedConditions.visibilityOfElementLocated(DELETE_ICON)).isEnabled();
-//		return driver.findElement(DELETE_ICON).isEnabled();
+		// return driver.findElement(DELETE_ICON).isEnabled();
 	}
 
 	public boolean isDeleteButtonDisplayed() {
 		return wait.until(ExpectedConditions.visibilityOfElementLocated(DELETE_ICON)).isDisplayed();
-//		return driver.findElement(DELETE_ICON).isDisplayed();
+		// return driver.findElement(DELETE_ICON).isDisplayed();
 	}
 
 	public String emptyInputBoxErrorValidation() {
