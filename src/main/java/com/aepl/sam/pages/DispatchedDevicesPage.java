@@ -496,7 +496,7 @@ public class DispatchedDevicesPage extends DispatchedDevicesPageLocators {
 
 	public boolean isUploadedDispatchDeviceListVisible() {
 		WebElement first = wait
-				.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(UPLOADED_DISPATCHED_DEVICE_LIST)).getFirst();
+				.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(UPLOADED_DISPATCHED_DEVICE_LIST)).get(0);
 		comm.highlightElement(first, "solid purple");
 		return first.isDisplayed();
 	}
@@ -515,7 +515,7 @@ public class DispatchedDevicesPage extends DispatchedDevicesPageLocators {
 	}
 
 	public List<String> getTableHeadersOfUploadedDispatchDeviceList() {
-		if (driver.findElements(COMPONENT_TITLE).getFirst().getText().contains("Uploaded Dispatch Device List")) {
+		if (driver.findElements(COMPONENT_TITLE).get(0).getText().contains("Uploaded Dispatch Device List")) {
 			return table.getTableHeaders(TABLE_1);
 		}
 
