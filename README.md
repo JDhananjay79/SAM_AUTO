@@ -98,6 +98,14 @@ Right-click on `testng.xml` in your IDE and select **Run As > TestNG Suite**.
 
 ---
 
-## 🤝 Contributing
+## 🤝 Internal Contributions
 
-We welcome contributions! Please refer to our [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) for community guidelines.
+This is an internal project. Contributions are welcome from authorized Sampark/AEPL team members. 
+- Please follow the [Internal Code of Conduct](CODE_OF_CONDUCT.md).
+- Ensure all code follows the established Page Object Model patterns.
+- Open a PR for any changes and tag the Project Lead for review.
+
+---
+
+> [!IMPORTANT]
+> This repository is **Confidential** and for **Internal Use Only**. Unauthorized distribution of the code or documentation is strictly prohibited.

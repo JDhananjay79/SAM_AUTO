@@ -1,46 +1,36 @@
-# Contributor Covenant Code of Conduct
+# Internal Code of Professional Conduct - SAM_AUTO
 
-## Our Pledge
+## Overview
 
-In the interest of fostering an open and welcoming environment, we as contributors and maintainers pledge to making participation in our project and our community a harassment-free experience for everyone, regardless of age, body size, disability, ethnicity, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, religion, or sexual identity and orientation.
+This project is an internal resource for **Sampark/AEPL**. Our goal is to maintain a professional, collaborative, and respectful environment for all team members involved in automation development.
 
-## Our Standards
+## Professional Standards
 
-Examples of behavior that contributes to creating a positive environment include:
+We expect all internal contributors to adhere to the following standards:
 
-* Using welcoming and inclusive language
-* Being respectful of differing viewpoints and experiences
-* Gracefully accepting constructive criticism
-* Focusing on what is best for the community
-* Showing empathy towards other community members
+1.  **Professional Communication**: Ensure all comments in code, Jira tickets, and communication channels (Slack/Teams) are professional and respectful.
+2.  **Collaborative Spirit**: Support team members during code reviews and knowledge sharing. Constructive criticism should be focused on the code, not the individual.
+3.  **Data Privacy & Security**: Since this project handles internal automation, always adhere to AEPL's data security policies. Never commit sensitive credentials or PII (Personally Identifiable Information) to the repository.
+4.  **Integrity**: Be honest about progress and challenges. If a bug or automation failure is discovered, focus on the solution rather than assigning blame.
+5.  **Inclusivity**: Respect the diverse backgrounds, skills, and perspectives of all team members.
 
-Examples of unacceptable behavior by participants include:
+## Unacceptable Behavior
 
-* The use of sexualized language or imagery and unwelcome sexual attention or advances
-* Trolling, insulting/derogatory comments, and personal or political attacks
-* Public or private harassment
-* Publishing others' private information, such as a physical or electronic address, without explicit permission
-* Other conduct which could reasonably be considered inappropriate in a professional setting
+The following behaviors are considered a violation of internal professional standards:
 
-## Our Responsibilities
+*   Harassment or discrimination of any kind.
+*   The use of inappropriate or offensive language in commit messages or documentation.
+*   Unprofessional conduct during team meetings or code reviews.
+*   Intentional circumvention of security audit or quality standards.
 
-Project maintainers are responsible for clarifying the standards of acceptable behavior and are expected to take appropriate and fair corrective action in response to any instances of unacceptable behavior.
+## Reporting & Resolution
 
-Project maintainers have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned to this Code of Conduct, or to ban temporarily or permanently any contributor for other behaviors that they deem inappropriate, threatening, offensive, or harmful.
+If you experience or witness behavior that violates these professional standards, please follow the established internal reporting lines:
 
-## Scope
+1.  **Project Lead**: In many cases, issues can be resolved through a direct conversation with the Project Lead.
+2.  **Management**: If the issue is with a lead or remains unresolved, escalate to the appropriate Engineering Manager.
+3.  **Human Resources**: For serious violations involving harassment or discrimination, please refer to the AEPL Employee Handbook for HR reporting procedures.
 
-This Code of Conduct applies both within project spaces and in public spaces when an individual is representing the project or its community. Examples of representing a project or community include using an official project e-mail address, posting via an official social media account, or acting as an appointed representative at an online or offline event. Representation of a project may be further defined and clarified by project maintainers.
+## Confidentiality
 
-## Enforcement
-
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting the project team. All complaints will be reviewed and investigated and will result in a response that is deemed necessary and appropriate to the circumstances. The project team is obligated to maintain confidentiality with regard to the reporter of an incident. Further details of specific enforcement policies may be posted separately.
-
-Project maintainers who do not follow or enforce the Code of Conduct in good faith may face temporary or permanent repercussions as determined by other members of the project's leadership.
-
-## Attribution
-
-This Code of Conduct is adapted from the [Contributor Covenant][homepage], version 1.4, available at [http://contributor-covenant.org/version/1.4/][version]
-
-[homepage]: http://contributor-covenant.org
-[version]: http://contributor-covenant.org/version/1.4/
+This project and its documentation are confidential to Sampark/AEPL. Do not share access or code with external parties without explicit authorization from management.
