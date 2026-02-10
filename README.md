@@ -16,7 +16,7 @@
 
 ---
 
-## 🛠️ Tech Stack   mini change
+## 🛠️ Tech Stack
 
 | Technology | Purpose |
 | :--- | :--- |
