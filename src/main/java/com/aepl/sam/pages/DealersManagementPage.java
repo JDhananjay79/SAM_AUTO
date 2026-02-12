@@ -514,7 +514,8 @@ public class DealersManagementPage extends DealersManagementLocators {
 
 	public boolean isSubmitButtonIsVisibleIfNoDataIsInputed() {
 		driver.navigate().refresh();
-		WebElement submit_btn = driver.findElement(SUBMIT_BTN);
+		WebElement submit_btn = wait.until(ExpectedConditions.visibilityOfElementLocated(SUBMIT_BTN));
+//		WebElement submit_btn = driver.findElement(SUBMIT_BTN);
 		comm.highlightElement(submit_btn, "Black");
 		return submit_btn.isEnabled() ? false : true;
 	}
