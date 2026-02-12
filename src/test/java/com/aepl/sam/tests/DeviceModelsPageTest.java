@@ -207,10 +207,14 @@ public class DeviceModelsPageTest extends TestBase {
 	}
 
 	// Validate the table data on the page of device model list table
-	/**
-	 * this below test is passed but the data that this method gets is real time
-	 * dynamic
-	 * so it does not able to validate the actual and expected data
+	/** this below test is passed but the data that this method gets is real time dynamic
+	 *  so it does not able to validate the actual and expected data 
+	 *  
+	 *  NOTE : modify in future 
+	 *  
+	 *  NOTE : Create a random string for creating new model and store it in new variable 
+	 *  which we can use it further for search that perticular madel.
+	 *  so it does not able to validate the actual and expected data
 	 *
 	 * NOTE : modify in future
 	 *
