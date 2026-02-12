@@ -24,7 +24,7 @@ import org.openqa.selenium.support.locators.RelativeLocator;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.aepl.sam.constants.Constants;
+import com.aepl.sam.utils.Constants;
 import com.aepl.sam.locators.DispatchedDevicesPageLocators;
 import com.aepl.sam.utils.TableUtils;
 
@@ -50,7 +50,7 @@ public class DispatchedDevicesPage extends DispatchedDevicesPageLocators {
 		// Search for both input and mat-select fields
 		String xpath = String.format("//*[@id='%1$s' or @name='%1$s' or @class='%1$s' or @formcontrolname='%1$s']",
 				fieldName);
-//		System.out.println("XPath used for locating the field: " + xpath);
+		// System.out.println("XPath used for locating the field: " + xpath);
 
 		List<WebElement> elements = driver.findElements(By.xpath(xpath));
 
@@ -61,7 +61,7 @@ public class DispatchedDevicesPage extends DispatchedDevicesPageLocators {
 		WebElement element = elements.get(0);
 		String tagName = element.getTagName();
 
-//		System.out.println("Tag name of the located element: " + tagName);
+		// System.out.println("Tag name of the located element: " + tagName);
 		if ("mat-select".equalsIgnoreCase(tagName)) {
 			return validateMatSelectField(element, inputValue);
 		} else {
@@ -163,7 +163,8 @@ public class DispatchedDevicesPage extends DispatchedDevicesPageLocators {
 		comm.highlightElement(device_utility, "solid purple");
 		device_utility.click();
 
-//		WebElement devModel = wait.until(ExpectedConditions.visibilityOfElementLocated(DISPATCHED_DEVICE));
+		// WebElement devModel =
+		// wait.until(ExpectedConditions.visibilityOfElementLocated(DISPATCHED_DEVICE));
 		WebElement DisDevice = driver.findElement(DISPATCHED_DEVICE);
 		comm.highlightElement(DisDevice, "solid purple");
 		DisDevice.click();
@@ -188,13 +189,13 @@ public class DispatchedDevicesPage extends DispatchedDevicesPageLocators {
 
 	public String NewInputFields(String action) {
 		switch (action.toLowerCase()) {
-		case "add":
-			return addDevice();
-		case "update":
-			return updateDevice();
-		default:
-			logger.warn("Invalid operation type: " + action);
-			throw new IllegalArgumentException("Invalid action: " + action);
+			case "add":
+				return addDevice();
+			case "update":
+				return updateDevice();
+			default:
+				logger.warn("Invalid operation type: " + action);
+				throw new IllegalArgumentException("Invalid action: " + action);
 		}
 	}
 
@@ -429,34 +430,39 @@ public class DispatchedDevicesPage extends DispatchedDevicesPageLocators {
 		return isDisabled;
 	}
 
-//	public String uploadFileAndSubmit() {
-//		try {
-//			WebElement fileInput = wait.until(ExpectedConditions.presenceOfElementLocated(ATTACHMENT_BTN));
-//
-//			// Use sendKeys directly (MUCH more reliable than Robot!)
-//			String filePath = Paths.get("src/test/resources/SampleUpload/Sample_Dispatch_Sheet.xlsx").toAbsolutePath()
-//					.toString();
-//
-//			Thread.sleep(200);
-//
-//			fileInput.sendKeys(filePath);
-//
-//			WebElement submitButton = wait.until(ExpectedConditions.elementToBeClickable(SUBMIT_BTN));
-//			submitButton.click();
-//			logger.info("Submit button clicked.");
-//
-//			WebElement toastMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(TOAST_MSG));
-//			comm.highlightElement(toastMessage, "solid purple");
-//			String message = toastMessage.getText().trim();
-//			logger.info("Toast message received: {}", message);
-//
-//			return message;
-//
-//		} catch (Exception e) {
-//			logger.error("Error during file upload and submission: {}", e.getMessage(), e);
-//			return "Error during file upload and submission.";
-//		}
-//	}
+	// public String uploadFileAndSubmit() {
+	// try {
+	// WebElement fileInput =
+	// wait.until(ExpectedConditions.presenceOfElementLocated(ATTACHMENT_BTN));
+	//
+	// // Use sendKeys directly (MUCH more reliable than Robot!)
+	// String filePath =
+	// Paths.get("src/test/resources/SampleUpload/Sample_Dispatch_Sheet.xlsx").toAbsolutePath()
+	// .toString();
+	//
+	// Thread.sleep(200);
+	//
+	// fileInput.sendKeys(filePath);
+	//
+	// WebElement submitButton =
+	// wait.until(ExpectedConditions.elementToBeClickable(SUBMIT_BTN));
+	// submitButton.click();
+	// logger.info("Submit button clicked.");
+	//
+	// WebElement toastMessage =
+	// wait.until(ExpectedConditions.visibilityOfElementLocated(TOAST_MSG));
+	// comm.highlightElement(toastMessage, "solid purple");
+	// String message = toastMessage.getText().trim();
+	// logger.info("Toast message received: {}", message);
+	//
+	// return message;
+	//
+	// } catch (Exception e) {
+	// logger.error("Error during file upload and submission: {}", e.getMessage(),
+	// e);
+	// return "Error during file upload and submission.";
+	// }
+	// }
 
 	public String uploadFileAndSubmit() {
 		String message;
@@ -490,7 +496,7 @@ public class DispatchedDevicesPage extends DispatchedDevicesPageLocators {
 
 	public boolean isUploadedDispatchDeviceListVisible() {
 		WebElement first = wait
-				.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(UPLOADED_DISPATCHED_DEVICE_LIST)).getFirst();
+				.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(UPLOADED_DISPATCHED_DEVICE_LIST)).get(0);
 		comm.highlightElement(first, "solid purple");
 		return first.isDisplayed();
 	}
@@ -509,7 +515,7 @@ public class DispatchedDevicesPage extends DispatchedDevicesPageLocators {
 	}
 
 	public List<String> getTableHeadersOfUploadedDispatchDeviceList() {
-		if (driver.findElements(COMPONENT_TITLE).getFirst().getText().contains("Uploaded Dispatch Device List")) {
+		if (driver.findElements(COMPONENT_TITLE).get(0).getText().contains("Uploaded Dispatch Device List")) {
 			return table.getTableHeaders(TABLE_1);
 		}
 
@@ -651,48 +657,49 @@ public class DispatchedDevicesPage extends DispatchedDevicesPageLocators {
 		return true;
 	}
 
-//	public boolean isDeleteButtonVisibleOnDispatchedDeviceList() {
-//		return table.areDeleteButtonsEnabled(TABLE_1);
-//	}
-//
-//	public boolean isDeleteButtonClickableOnDispatchedDeviceList() {
-//		List<WebElement> deleteButtons = driver.findElements(DELETE_ICON);
-//		for (WebElement deleteButton : deleteButtons) {
-//			comm.highlightElement(deleteButton, "solid purple");
-//			if (!deleteButton.isEnabled()) {
-//				return false;
-//			}
-//		}
-//		return true;
-//	}
-//
-//	public boolean clickDeleteButtonAndConfirmDeletion() {
-//		SearchDevice();
-//
-//		driver.findElement(DELETE_ICON).click();
-//		return true;
-//	}
-//
-//	public String isClickCancelMakesCancellationOfPopUp() {
-//		Alert alert = wait.until(ExpectedConditions.alertIsPresent());
-//		String alertText = alert.getText();
-//		alert.dismiss();
-//		return alertText;
-//	}
-//
-//	public String isDispachedDeviceDeleted() {
-//		driver.findElement(DELETE_ICON).click();
-//		Alert alert = wait.until(ExpectedConditions.alertIsPresent());
-//		alert.accept();
-//
-//		WebElement toastMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(TOAST_MSG));
-//		comm.highlightElement(toastMessage, "solid purple");
-//
-//		String toast = toastMessage.getText().trim();
-//		logger.info("Toast message received: " + toast);
-//
-//		return toast;
-//	}
+	// public boolean isDeleteButtonVisibleOnDispatchedDeviceList() {
+	// return table.areDeleteButtonsEnabled(TABLE_1);
+	// }
+	//
+	// public boolean isDeleteButtonClickableOnDispatchedDeviceList() {
+	// List<WebElement> deleteButtons = driver.findElements(DELETE_ICON);
+	// for (WebElement deleteButton : deleteButtons) {
+	// comm.highlightElement(deleteButton, "solid purple");
+	// if (!deleteButton.isEnabled()) {
+	// return false;
+	// }
+	// }
+	// return true;
+	// }
+	//
+	// public boolean clickDeleteButtonAndConfirmDeletion() {
+	// SearchDevice();
+	//
+	// driver.findElement(DELETE_ICON).click();
+	// return true;
+	// }
+	//
+	// public String isClickCancelMakesCancellationOfPopUp() {
+	// Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+	// String alertText = alert.getText();
+	// alert.dismiss();
+	// return alertText;
+	// }
+	//
+	// public String isDispachedDeviceDeleted() {
+	// driver.findElement(DELETE_ICON).click();
+	// Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+	// alert.accept();
+	//
+	// WebElement toastMessage =
+	// wait.until(ExpectedConditions.visibilityOfElementLocated(TOAST_MSG));
+	// comm.highlightElement(toastMessage, "solid purple");
+	//
+	// String toast = toastMessage.getText().trim();
+	// logger.info("Toast message received: " + toast);
+	//
+	// return toast;
+	// }
 
 	public boolean areDeleteButtonsVisibleAndEnabled() {
 		List<WebElement> deleteButtons = driver.findElements(DELETE_ICON);

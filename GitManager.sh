@@ -6,7 +6,7 @@
 # Directory to scan
 TARGET_DIR="/d/AEPL_AUTOMATION/SAM_AUTO"
 
-# Folder names to delete (space-separated list)
+# Folder names to delete (space-separated list)   
 FOLDERS_TO_DELETE=("logs" "screenshots" "test-output" "test-results")
 
 # Navigate to the target directory

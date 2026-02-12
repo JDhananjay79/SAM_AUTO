@@ -9,13 +9,42 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import com.aepl.sam.base.TestBase;
-import com.aepl.sam.constants.Constants;
-import com.aepl.sam.constants.ProductionDeviceConstants;
+import com.aepl.sam.utils.Constants;
 import com.aepl.sam.pages.CommonMethods;
 import com.aepl.sam.pages.ProductionDevicePage;
 import com.aepl.sam.utils.ExcelUtility;
 
-public class ProductionDevicePageTest extends TestBase implements ProductionDeviceConstants {
+public class ProductionDevicePageTest extends TestBase {
+
+	private static final String DEVICE_EXCEL_SHEET = "Device_Dashboard_Test";
+
+	private static final String TC_PAGE_LOGO = "Verify Company Logo on Webpage";
+	private static final String EXP_LOGO_DISPLAYED = "Logo Displayed";
+
+	private static final String TC_PAGE_TITLE = "Verify Page Title on Webpage";
+	private static final String EXP_PAGE_TITLE = "AEPL Sampark Diagnostic Cloud";
+
+	private static final String TC_ADD_DEVICE = "Test input fields by entering values";
+	private static final String EXP_ADD_DEVICE = "Create Production Device";
+
+	private static final String TC_SEARCH_DEVICE = "Test search functionality for production device";
+	private static final String EXP_SEARCH_DEVICE = "Production Device";
+
+	private static final String TC_VIEW_DEVICE = "Test View Device";
+	private static final String EXP_VIEW_DEVICE = "Update Production Device";
+
+	private static final String TC_UPDATE_DEVICE = "Test input fields by updating values";
+	private static final String EXP_UPDATE_DEVICE = "Production Device";
+
+	private static final String TC_DELETE_DEVICE = "Test View Device";
+	private static final String EXP_DELETE_DEVICE = "Production Device";
+
+	private static final String TC_PAGINATION = "Verify Pagination Functionality";
+	private static final String EXP_PAGINATION = "Pagination works correctly";
+
+	private static final String TC_VERSION = "Verify Version Functionality";
+
+	private static final String TC_COPYRIGHT = "Verify Copyright Functionality";
 
 	private ProductionDevicePage productionDevicePage;
 	private CommonMethods comm;
@@ -244,7 +273,7 @@ public class ProductionDevicePageTest extends TestBase implements ProductionDevi
 	/** Device Model Name Validations **/
 	// validate device model name should be clickable
 	/*** Commenting this method because this is impact on the below methods ***/
-//	@Test(priority = 27)
+	// @Test(priority = 27)
 	public void testDeviceModelNameClickable() {
 		executor.executeTest("Test is device model name dropdown is clickable", true, () -> {
 			return productionDevicePage.isDeviceModelNameClickable();
@@ -254,7 +283,7 @@ public class ProductionDevicePageTest extends TestBase implements ProductionDevi
 	// validate error msg for blank input
 	// No input/mat-select found for: mat-select---- this will gives this error
 	// every time
-//	@Test(priority = 28)
+	// @Test(priority = 28)
 	public void testErrorValidationInDeviceModelNameBlankBox() {
 		executor.executeTest("Validate error message for blank Device Model Name input",
 				"This field is required and can't be only spaces.",
@@ -341,7 +370,7 @@ public class ProductionDevicePageTest extends TestBase implements ProductionDevi
 	// also does not contains '*' mark
 
 	// validate error msg of Alt Mobile for blank input
-//	@Test(priority = 38)
+	// @Test(priority = 38)
 	public void testErrorValidationInAltMobileBlankBox() {
 		executor.executeTest("Validate error message for blank Alt Mobile input",
 				"This field is required and can't be only spaces.",
@@ -349,7 +378,7 @@ public class ProductionDevicePageTest extends TestBase implements ProductionDevi
 	}
 
 	// validate error msg of Alt Mobile for short input - 10 chars
-//	@Test(priority = 39)
+	// @Test(priority = 39)
 	public void testErrorValidationInAltMobileInvalidShort() {
 		executor.executeTest("Validate error message for short Alt Mobile input",
 				"Value must be exactly 10 characters long.",
@@ -357,7 +386,7 @@ public class ProductionDevicePageTest extends TestBase implements ProductionDevi
 	}
 
 	// validate error msg of Alt Mobile for long input - 10 chars
-//	@Test(priority = 40)
+	// @Test(priority = 40)
 	public void testErrorValidationInAltMobileInvalidLong() {
 		executor.executeTest("Validate error message for long Alt Mobile input",
 				"Value must be exactly 10 characters long.",
@@ -365,7 +394,7 @@ public class ProductionDevicePageTest extends TestBase implements ProductionDevi
 	}
 
 	// validate error msg of Alt Mobile for leading space
-//	@Test(priority = 41)
+	// @Test(priority = 41)
 	public void testErrorValidationInAltMobileLeadingSpace() {
 		executor.executeTest("Validate error message for leading space in Alt Mobile input",
 				"Remove leading or trailing spaces.",
@@ -373,7 +402,7 @@ public class ProductionDevicePageTest extends TestBase implements ProductionDevi
 	}
 
 	// validate error msg of Alt Mobile for trailing space
-//	@Test(priority = 42)
+	// @Test(priority = 42)
 	public void testErrorValidationInAltMobileTrailingSpace() {
 		executor.executeTest("Validate error message for trailing space in Alt Mobile input",
 				"Remove leading or trailing spaces.",
@@ -381,7 +410,7 @@ public class ProductionDevicePageTest extends TestBase implements ProductionDevi
 	}
 
 	// validate error msg of Alt Mobile for chars and special chars input
-//	@Test(priority = 43)
+	// @Test(priority = 43)
 	public void testErrorValidationInAltMobileCharsSpecialChars() {
 		executor.executeTest("Validate error message for chars and special chars in Alt Mobile input",
 				"Only numbers are allowed.",
@@ -393,7 +422,7 @@ public class ProductionDevicePageTest extends TestBase implements ProductionDevi
 	// validate error msg of ALT Service Provider for blank input
 	// NOTE : Alt Mobile is not mandatory field and it does not contains error msg.
 	// also does not contains '*' mark
-//	@Test(priority = 44)
+	// @Test(priority = 44)
 	public void testErrorValidationInAltServiceProviderBlankBox() {
 		executor.executeTest("Validate error message for blank ALT Service Provider input",
 				"This field is required and can't be only spaces.",
@@ -401,7 +430,7 @@ public class ProductionDevicePageTest extends TestBase implements ProductionDevi
 	}
 
 	// validate error msg of ALT Service Provider for leading space
-//	@Test(priority = 45)
+	// @Test(priority = 45)
 	public void testErrorValidationInAltServiceProviderLeadingSpace() {
 		executor.executeTest("Validate error message for leading space in ALT Service Provider input",
 				"Remove leading or trailing spaces.",
@@ -409,7 +438,7 @@ public class ProductionDevicePageTest extends TestBase implements ProductionDevi
 	}
 
 	// validate error msg of ALT Service Provider for trailing space
-//	@Test(priority = 46)
+	// @Test(priority = 46)
 	public void testErrorValidationInAltServiceProviderTrailingSpace() {
 		executor.executeTest("Validate error message for trailing space in ALT Service Provider input",
 				"Remove leading or trailing spaces.",
@@ -658,43 +687,49 @@ public class ProductionDevicePageTest extends TestBase implements ProductionDevi
 				() -> productionDevicePage.NewInputFields("update"));
 	}
 
-//	@Test(priority = 3)
-//	public void testAddProdDevice() {
-//		executor.executeTest(TC_ADD_DEVICE, EXP_ADD_DEVICE, () -> productionDevicePage.NewInputFields("add"));
-//	}
-//
-//	@Test(priority = 4)
-//	public void testSearchDevice() {
-//		executor.executeTest(TC_SEARCH_DEVICE, EXP_SEARCH_DEVICE, productionDevicePage::searchDevice);
-//	}
-//
-//	@Test(priority = 5)
-//	public void testViewDevice() {
-//		executor.executeTest(TC_VIEW_DEVICE, EXP_VIEW_DEVICE, productionDevicePage::viewDevice);
-//	}
-//
-//	@Test(priority = 6)
-//	public void testUpdateDevice() {
-//		executor.executeTest(TC_UPDATE_DEVICE, EXP_UPDATE_DEVICE, () -> productionDevicePage.NewInputFields("update"));
-//	}
-//
-//	@Test(priority = 7)
-//	public void testSearchDeviceAgain() {
-//		executor.executeTest(TC_SEARCH_DEVICE, EXP_SEARCH_DEVICE, productionDevicePage::searchDevice);
-//	}
-//
-//	@Test(priority = 8)
-//	public void testDeleteDevice() {
-//		executor.executeTest(TC_DELETE_DEVICE, EXP_DELETE_DEVICE, productionDevicePage::DeleteDevice);
-//	}
-//
-//	@Test(priority = 9)
-//	public void testPagination() {
-//		executor.executeTest(TC_PAGINATION, EXP_PAGINATION, () -> {
-//			comm.checkPagination();
-//			return EXP_PAGINATION;
-//		});
-//	}
+	// @Test(priority = 3)
+	// public void testAddProdDevice() {
+	// executor.executeTest(TC_ADD_DEVICE, EXP_ADD_DEVICE, () ->
+	// productionDevicePage.NewInputFields("add"));
+	// }
+	//
+	// @Test(priority = 4)
+	// public void testSearchDevice() {
+	// executor.executeTest(TC_SEARCH_DEVICE, EXP_SEARCH_DEVICE,
+	// productionDevicePage::searchDevice);
+	// }
+	//
+	// @Test(priority = 5)
+	// public void testViewDevice() {
+	// executor.executeTest(TC_VIEW_DEVICE, EXP_VIEW_DEVICE,
+	// productionDevicePage::viewDevice);
+	// }
+	//
+	// @Test(priority = 6)
+	// public void testUpdateDevice() {
+	// executor.executeTest(TC_UPDATE_DEVICE, EXP_UPDATE_DEVICE, () ->
+	// productionDevicePage.NewInputFields("update"));
+	// }
+	//
+	// @Test(priority = 7)
+	// public void testSearchDeviceAgain() {
+	// executor.executeTest(TC_SEARCH_DEVICE, EXP_SEARCH_DEVICE,
+	// productionDevicePage::searchDevice);
+	// }
+	//
+	// @Test(priority = 8)
+	// public void testDeleteDevice() {
+	// executor.executeTest(TC_DELETE_DEVICE, EXP_DELETE_DEVICE,
+	// productionDevicePage::DeleteDevice);
+	// }
+	//
+	// @Test(priority = 9)
+	// public void testPagination() {
+	// executor.executeTest(TC_PAGINATION, EXP_PAGINATION, () -> {
+	// comm.checkPagination();
+	// return EXP_PAGINATION;
+	// });
+	// }
 
 	@Test(priority = 99)
 	public void testVersion() {

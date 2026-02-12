@@ -13,13 +13,51 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import com.aepl.sam.base.TestBase;
-import com.aepl.sam.constants.Constants;
-import com.aepl.sam.constants.GovernmentServerConstants;
+import com.aepl.sam.utils.Constants;
 import com.aepl.sam.pages.CommonMethods;
 import com.aepl.sam.pages.GovernmentServerPage;
 import com.aepl.sam.utils.ExcelUtility;
 
-public class GovernmentServerPageTest extends TestBase implements GovernmentServerConstants {
+public class GovernmentServerPageTest extends TestBase {
+	private static final String SHEET_NAME = "Government_Server_Test";
+
+	// Test Cases
+	private static final String TC_LOGO = "Verify Company Logo on Webpage";
+	private static final String TC_PAGE_TITLE = "Verify Page Title on Webpage";
+	private static final String TC_NAV_BAR = "Verify Navigation Bar Click Functionality";
+	private static final String TC_REFRESH = "Verify Refresh Button Functionality";
+	private static final String TC_BACK = "Verify Back Button Functionality";
+	private static final String TC_ADD_SERVER = "Verify Add Government Server Functionality";
+	private static final String TC_FILL_FORM = "Verify Government Server Form Filling";
+	private static final String TC_SEARCH_VIEW = "Verify Search and View Functionality";
+	private static final String TC_UPDATE = "Verify Update Government Server Functionality";
+	private static final String TC_ADD_FIRMWARE = "Verify Add Firmware Functionality";
+	private static final String TC_DELETE = "Verify Delete Government Server Functionality";
+	private static final String TC_PAGINATION = "Verify Pagination Functionality";
+	private static final String TC_VERSION = "Verify Version Functionality";
+	private static final String TC_COPYRIGHT = "Verify Copyright Functionality";
+	private static final String TC_COMPONENT_TITLE = "Test Page Component Title";
+	private static final String TC_VALIDATE_BUTTONS = "Test all button on page {Government Server}";
+	private static final String TC_VALIDATE_COMPONENTS = "Test All Components on the page {Government Server}";
+
+	// Expected Results
+	private static final boolean EXP_LOGO_DISPLAYED = true;
+	private static final String EXP_PAGE_TITLE = "Government Server";
+	private static final boolean EXP_NAV_BAR = true;
+	private static final String EXP_REFRESH = "Government Server";
+	private static final String EXP_BACK = Constants.GOV_LINK;
+	private static final String EXP_ADD_SERVER = "Government Servers Details";
+	private static final String EXP_FILL_FORM = "Data Fetched Successfully";
+	private static final String EXP_SEARCH_VIEW = "Search and View Successful";
+	private static final String EXP_UPDATE = "Data Saved successfully!!";
+	private static final String EXP_ADD_FIRMWARE = "Firmware Added Successfully";
+	private static final String EXP_DELETE = "Data Fetched Successfully";
+	private static final String EXP_PAGINATION = "Pagination works correctly";
+	private static final String EXP_COMPONENT_TITLE = "Government Servers List";
+	private static final String EXP_VALIDATE_BUTTONS = "All buttons are displayed and enabled successfully.";
+	private static final String EXP_VALIDATE_COMPONENTS = "All components are displayed and validated successfully.";
+	private static final String BIN_FILE_PATH = "D:\\AEPL_AUTOMATION\\SAM_AUTO\\src\\test\\resources\\SampleUpload\\TCP01.bin";
+
 	private GovernmentServerPage govServerPage;
 	private ExcelUtility excelUtility;
 	private CommonMethods comm;
@@ -625,12 +663,12 @@ public class GovernmentServerPageTest extends TestBase implements GovernmentServ
 
 	// Validate firmware version for empty box
 	// not being tested for the empty box
-//	@Test(priority = 77)
-//	public void testErrorMsgForFirmwareVersionOnEmptyInput() {
-//		executor.executeTest("Test the error msg of firmware version on empty input",
-//				"This field is required and can't be empty.",
-//				() -> govServerPage.validateSingleInputBox("firmwareName", ""));
-//	}
+	// @Test(priority = 77)
+	// public void testErrorMsgForFirmwareVersionOnEmptyInput() {
+	// executor.executeTest("Test the error msg of firmware version on empty input",
+	// "This field is required and can't be empty.",
+	// () -> govServerPage.validateSingleInputBox("firmwareName", ""));
+	// }
 
 	// Validate firmware version for space in input
 	@Test(priority = 78)
@@ -666,12 +704,13 @@ public class GovernmentServerPageTest extends TestBase implements GovernmentServ
 
 	// Validate firmware description for empty box
 	// not tested for the empty input box
-//	@Test(priority = 82)
-//	public void testErrorMsgForFirmwareDescriptionOnEmptyInput() {
-//		executor.executeTest("Test the error msg of firmware description on empty input",
-//				"This field is required and can't be empty.",
-//				() -> govServerPage.validateSingleInputBox("description", ""));
-//	}
+	// @Test(priority = 82)
+	// public void testErrorMsgForFirmwareDescriptionOnEmptyInput() {
+	// executor.executeTest("Test the error msg of firmware description on empty
+	// input",
+	// "This field is required and can't be empty.",
+	// () -> govServerPage.validateSingleInputBox("description", ""));
+	// }
 
 	// Validate firmware description for only space inputed
 	@Test(priority = 83)
@@ -707,7 +746,7 @@ public class GovernmentServerPageTest extends TestBase implements GovernmentServ
 
 	// Validate that the upload file input box have a validation of - this field is
 	// mandatory
-//	@Test(priority = 87)
+	// @Test(priority = 87)
 	public void testErrorMsgForUploadFileSection() {
 		executor.executeTest("Test the error msg of upload file input box", "This field is mandatory.",
 				() -> govServerPage.validateSingleInputBox("mat-input-3", " "));
@@ -751,14 +790,14 @@ public class GovernmentServerPageTest extends TestBase implements GovernmentServ
 
 	// validate that the click on select date button should open the box to select
 	// the date
-//	@Test(priority = 93)
+	// @Test(priority = 93)
 	public void testClickOnSelectDateButtonOpensDatePicker() {
 		executor.executeTest("Test the click on select date button opens date picker", true,
 				govServerPage::doesClickOnSelectDateButtonOpensDatePicker);
 	}
 
 	// validate that the future date should not be selected
-//	@Test(priority = 94)
+	// @Test(priority = 94)
 	public void testFutureDateShouldNotBeSelectable() {
 		executor.executeTest("Test the future date should not be selectable", true,
 				govServerPage::isFutureDateNotSelectable);

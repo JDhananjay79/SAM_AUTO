@@ -15,7 +15,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.aepl.sam.constants.Constants;
+import com.aepl.sam.utils.Constants;
 import com.aepl.sam.locators.OtaPageLocators;
 
 public class OtaPage extends OtaPageLocators {
@@ -205,7 +205,8 @@ public class OtaPage extends OtaPageLocators {
 			robot.keyRelease(KeyEvent.VK_ENTER);
 			logger.info("File input done using Robot.");
 
-			List<WebElement> otaCheckboxes = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(COMMAND_LIST));
+			List<WebElement> otaCheckboxes = wait
+					.until(ExpectedConditions.presenceOfAllElementsLocatedBy(COMMAND_LIST));
 			for (WebElement checkbox : otaCheckboxes) {
 				comm.highlightElement(checkbox, "solid purple");
 				String text = checkbox.getText();

@@ -1,6 +1,5 @@
 package com.aepl.sam.tests;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.testng.annotations.AfterClass;
@@ -9,12 +8,108 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import com.aepl.sam.base.TestBase;
-import com.aepl.sam.constants.DeviceDashboardConstants;
+
 import com.aepl.sam.pages.CommonMethods;
 import com.aepl.sam.pages.DeviceDashboardPage;
 import com.aepl.sam.utils.ExcelUtility;
 
-public class DeviceDashboardPageTest extends TestBase implements DeviceDashboardConstants {
+public class DeviceDashboardPageTest extends TestBase {
+
+	// =========================================================
+	// 🧾 Excel Sheet Information
+	// =========================================================
+	private static final String DEVICE_DASHBOARD_EXCEL_SHEET = "DeviceDashboardTests";
+
+	// =========================================================
+	// 🧪 TEST CASE NAMES (TC_)
+	// =========================================================
+	// --- General Tests ---
+	private static final String TC_PAGE_LOGO = "Verify Company Logo";
+	private static final String TC_PAGE_TITLE = "Verify Page Title";
+	private static final String TC_NAV_BAR = "Verify Navigation Bar Link";
+	private static final String TC_VALIDATE_BUTTONS = "Validate Buttons";
+	private static final String TC_VALIDATE_COMPONENTS = "Validate Components";
+	private static final String TC_PAGINATION = "Verify Pagination";
+	private static final String TC_VERSION = "Verify Application Version";
+	private static final String TC_COPYRIGHT = "Verify Copyright";
+	private static final String TC_ALL_CARDS_VISIBILITY = "Test all cards visible";
+	private static final String TC_ALL_GRAPHS_VISIBILITY = "Test graph visible";
+	private static final String TC_GRAPH_CLICK_HEADERS = "Test graph click and headers";
+
+	// --- Search Functionality ---
+	private static final String TC_SEARCH_DEVICE = "Search Device";
+	private static final String TC_SEARCH_INPUT_VISIBLE = "Search Input Visible";
+	private static final String TC_SEARCH_INPUT_ENABLED = "Search Input Enabled";
+	private static final String TC_SEARCH_BUTTON_VISIBLE = "Search Button Visible";
+	private static final String TC_SEARCH_BUTTON_ENABLED = "Search Button Enabled";
+
+	// =========================================================
+	// 🎯 EXPECTED RESULTS (EXP_)
+	// =========================================================
+	// --- General Expectations ---
+	private static final Boolean EXP_LOGO_DISPLAYED = true;
+	private static final String EXP_PAGE_TITLE = "AEPL Sampark Diagnostic Cloud";
+	private static final String EXP_NAV_BAR_URL = "Link is verified";
+	private static final String EXP_VALIDATE_BUTTONS = "All buttons are displayed and enabled successfully.";
+	private static final String EXP_VALIDATE_COMPONENTS = "All components are displayed and validated successfully.";
+	private static final String EXP_PAGINATION = "Pagination Working";
+	private static final String EXP_VERSION = "Version: 1.5.0";
+	private static final String EXP_COPYRIGHT = "Accolade Electronics Pvt. Ltd.";
+
+	// --- Search Field Expectations ---
+
+	private static final String EXP_SEARCH_INPUT_ENABLED = "Search Input Enabled";
+	private static final String EXP_SEARCH_INPUT_NOT_ENABLED = "Search Input Not Enabled";
+	private static final String EXP_SEARCH_INPUT_VISIBLE = "Search Input Visible";
+	private static final String EXP_SEARCH_INPUT_NOT_VISIBLE = "Search Input Not Visible";
+	private static final String EXP_SEARCH_BUTTON_ENABLED = "Search Button Enabled";
+	private static final String EXP_SEARCH_BUTTON_NOT_ENABLED = "Search Button Not Enabled";
+	private static final String EXP_SEARCH_BUTTON_VISIBLE = "Search Button Visible";
+	private static final String EXP_SEARCH_BUTTON_NOT_VISIBLE = "Search Button Not Visible";
+
+	// --- Export Button Expectations ---
+	private static final String EXP_EXPORT_BUTTON_VISIBLE = "Export Button Visible";
+	private static final String EXP_EXPORT_BUTTON_ENABLED = "Export Button Enabled";
+	private static final String EXP_EXPORT_FUNCTIONALITY = "Export Functionality Working";
+
+	// =========================================================
+	// 📊 TABLE HEADERS
+	// =========================================================
+	private static final List<String> TOTAL_PRODUCTION_DEVICES_HEADERS = List.of("UIN NO.", "IMEI NO.", "ICCID NO.",
+			"MODEL NAME.",
+			"ACTION");
+
+	private static final List<String> TOTAL_DISPATCHED_DEVICES_HEADERS = List.of("UIN NO.", "IMEI NO.", "ICCID NO.",
+			"MODEL NAME.",
+			"CUSTOMER NAME", "ACTION");
+
+	private static final List<String> TOTAL_INSTALLED_DEVICES_HEADERS = List.of("UIN NO.", "IMEI NO.", "ICCID NO.",
+			"CHASSIS NO.",
+			"MODEL NAME.", "CUSTOMER NAME", "ACTION");
+
+	private static final List<String> TOTAL_DISCARDED_DEVICES_HEADERS = List.of("UIN NO.", "IMEI NO.", "ICCID NO.",
+			"CHASSIS NO.",
+			"MODEL NAME.", "INSTALLED AT", "DISCARDED AT", "ACTION");
+
+	private static final List<String> DEVICE_ACTIVITY_OVERVIEW_HEADERS = List.of("UIN NO.", "IMEI NO.", "ICCID NO.",
+			"MODEL NAME.",
+			"LOG IN TIME", "ACTION");
+
+	private static final List<String> FIRMWARE_WISE_DEVICES_HEADERS = List.of("UIN NO.", "IMEI NO.", "ICCID.",
+			"MODEL NAME.", "VERSION.",
+			"ACTION");
+
+	// =========================================================
+	// ⏱️ DROPDOWN OPTIONS
+	// =========================================================
+	private static final List<String> ACTIVITY_DURATION_DROPDOWN_OPTIONS = List.of("All", "Today", "Five Days",
+			"Ten Days", "Fifteen Days",
+			"More Than Fifteen", "Not Active");
+
+	// =========================================================
+	// 📈 GRAPH LABELS
+	// =========================================================
+
 	private DeviceDashboardPage deviceDashboardPage;
 	private CommonMethods comm;
 	private ExcelUtility excelUtility;
@@ -156,9 +251,7 @@ public class DeviceDashboardPageTest extends TestBase implements DeviceDashboard
 
 	@Test(priority = 20)
 	public void testTotalDispatchedDevicesTableHeaders() {
-		List<String> totalDispatchedDevicesTableHeadersExpected = Arrays.asList("UIN NO.", "IMEI NO.", "ICCID NO.",
-				"MODEL NAME.", "CUSTOMER NAME", "ACTION");
-		executor.executeTest("Test total dispatched devices table", totalDispatchedDevicesTableHeadersExpected,
+		executor.executeTest("Test total dispatched devices table", TOTAL_DISPATCHED_DEVICES_HEADERS,
 				deviceDashboardPage::validateTotalDispatchedDevicesTableHeaders);
 	}
 
@@ -235,9 +328,7 @@ public class DeviceDashboardPageTest extends TestBase implements DeviceDashboard
 	// **** Total Installed Devices Table ****//
 	@Test(priority = 31)
 	public void testTotalInstalledDevicesTableHeaders() {
-		List<String> totalInstalledDevicesTableHeadersExpected = Arrays.asList("UIN NO.", "IMEI NO.", "ICCID NO.",
-				"CHASSIS NO.", "MODEL NAME.", "CUSTOMER NAME", "ACTION");
-		executor.executeTest("Test total dispatched devices table", totalInstalledDevicesTableHeadersExpected,
+		executor.executeTest("Test total dispatched devices table", TOTAL_INSTALLED_DEVICES_HEADERS,
 				deviceDashboardPage::validateTotalInstalledDevicesTableHeaders);
 	}
 
@@ -314,9 +405,7 @@ public class DeviceDashboardPageTest extends TestBase implements DeviceDashboard
 	// **** Total Discarded Devices Table ****//
 	@Test(priority = 42)
 	public void testTotalDiscardedDevicesTableHeaders() {
-		List<String> totalDiscardedDevicesTableHeadersExpected = Arrays.asList("UIN NO.", "IMEI NO.", "ICCID NO.",
-				"CHASSIS NO.", "MODEL NAME.", "INSTALLED AT", "DISCARDED AT", "ACTION");
-		executor.executeTest("Test total Discarded devices table", totalDiscardedDevicesTableHeadersExpected,
+		executor.executeTest("Test total Discarded devices table", TOTAL_DISCARDED_DEVICES_HEADERS,
 				deviceDashboardPage::validateTotalDiscardedDevicesTableHeaders);
 	}
 
@@ -405,9 +494,7 @@ public class DeviceDashboardPageTest extends TestBase implements DeviceDashboard
 
 	@Test(priority = 55)
 	public void testDeviceActivityOverviewGraphTableHeaders() {
-		List<String> deviceActivityOverviewGraphLegendExpected = Arrays.asList("UIN NO.", "IMEI NO.", "ICCID NO.",
-				"MODEL NAME.", "LOG IN TIME", "ACTION");
-		executor.executeTest("Test Device Activity Overview Graph Legend", deviceActivityOverviewGraphLegendExpected,
+		executor.executeTest("Test Device Activity Overview Graph Legend", DEVICE_ACTIVITY_OVERVIEW_HEADERS,
 				deviceDashboardPage::validateDeviceActivityOverviewGraphTableHeaders);
 	}
 
@@ -474,10 +561,7 @@ public class DeviceDashboardPageTest extends TestBase implements DeviceDashboard
 
 	@Test(priority = 65)
 	public void testSelectActivityDurationDropdown() {
-		List<String> dropdownOptions = Arrays.asList("All", "Today", "Five Days", "Ten Days", "Fifteen Days",
-				"More Than Fifteen", "Not Active");
-
-		executor.executeTest("Test select activity duration dropdown", dropdownOptions,
+		executor.executeTest("Test select activity duration dropdown", ACTIVITY_DURATION_DROPDOWN_OPTIONS,
 				deviceDashboardPage::selectActivityDurationDropdown);
 	}
 
@@ -511,9 +595,7 @@ public class DeviceDashboardPageTest extends TestBase implements DeviceDashboard
 
 	@Test(priority = 70)
 	public void testFirmwareWiseDevicesGraphTableHeaders() {
-		List<String> firmwareWiseDevicesGraphLegendExpected = Arrays.asList("UIN NO.", "IMEI NO.", "ICCID.",
-				"MODEL NAME.", "VERSION.", "ACTION");
-		executor.executeTest("Test Firmware Wise Devices Graph Legend", firmwareWiseDevicesGraphLegendExpected,
+		executor.executeTest("Test Firmware Wise Devices Graph Legend", FIRMWARE_WISE_DEVICES_HEADERS,
 				deviceDashboardPage::validateFirmwareWiseDevicesGraphTableHeaders);
 	}
 

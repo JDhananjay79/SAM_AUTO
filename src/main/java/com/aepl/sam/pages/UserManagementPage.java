@@ -17,7 +17,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.aepl.sam.constants.Constants;
+import com.aepl.sam.utils.Constants;
 import com.aepl.sam.locators.UserManagementPageLocators;
 import com.aepl.sam.utils.RandomGeneratorUtils;
 import com.aepl.sam.utils.Result;
@@ -205,7 +205,7 @@ public class UserManagementPage extends UserManagementPageLocators {
 
 			WebElement status = driver.findElement(STATUS);
 			status.click();
-//			status.sendKeys(Keys.DOWN);
+			// status.sendKeys(Keys.DOWN);
 			status.sendKeys(Keys.ENTER);
 
 			((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");

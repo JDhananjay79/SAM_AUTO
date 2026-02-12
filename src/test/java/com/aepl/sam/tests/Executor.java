@@ -66,7 +66,7 @@ public class Executor {
 		}
 
 		if (expected instanceof Collection && actual instanceof Collection) {
-			return new ArrayList<>((Collection) expected).equals(new ArrayList<>((Collection) actual));
+			return new ArrayList<>((Collection<?>) expected).equals(new ArrayList<>((Collection<?>) actual));
 		}
 
 		if (expected instanceof Map && actual instanceof Map) {

@@ -13,13 +13,42 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import com.aepl.sam.base.TestBase;
-import com.aepl.sam.constants.Constants;
-import com.aepl.sam.constants.DeviceModelConstants;
+import com.aepl.sam.utils.Constants;
 import com.aepl.sam.pages.CommonMethods;
 import com.aepl.sam.pages.DeviceModelsPage;
 import com.aepl.sam.utils.ExcelUtility;
 
-public class DeviceModelsPageTest extends TestBase implements DeviceModelConstants {
+public class DeviceModelsPageTest extends TestBase {
+	private static final String DEVICE_MODELS_EXCEL_SHEET = "Device_Models_Test";
+
+	// Test Case Names (TC_)
+	private static final String TC_LOGO = "Verify Company Logo on Webpage";
+	private static final String TC_PAGE_TITLE = "Verify Page Title on Webpage";
+	private static final String TC_NAV_BAR_LINK = "Test Navigation to Device Utility Tab";
+	private static final String TC_CLICK_ADD_MODEL = "Test Clicking Add Device Model Button";
+	private static final String TC_ADD_MODEL = "Test Adding a New Device Model";
+	private static final String TC_SEARCH_MODEL = "Test Search Functionality for Device Model";
+	private static final String TC_VIEW_MODEL = "Test Viewing a Device Model";
+	private static final String TC_UPDATE_MODEL = "Test Updating an Existing Device Model";
+	private static final String TC_SEARCH_MODEL_2 = "Test Search Again for Device Model";
+	private static final String TC_DELETE_MODEL = "Test Deleting a Device Model";
+	private static final String TC_PAGINATION = "Verify Pagination Functionality";
+	private static final String TC_VERSION = "Verify Application Version Display";
+	private static final String TC_COPYRIGHT = "Verify Copyright Text";
+	private static final String TC_VALIDATE_BUTTONS = "Verify All Buttons on Device Details Page";
+	private static final String TC_COMPONENT_TITLES = "Verify All Component Title on Device Details Page";
+
+	// Expected Values (EXP_)
+	private static final String LOGO_DISPLAYED = "Logo Displayed";
+	private static final String LOGO_NOT_DISPLAYED = "Logo Not Displayed";
+	private static final String EXP_PAGE_TITLE = "AEPL Sampark Diagnostic Cloud";
+	private static final String EXP_ADD_MODEL_PAGE = "Create Device Model";
+	private static final String EXP_MODELS_PAGE = "Device Models";
+	private static final String EXP_VIEW_MODEL_PAGE = "View/Update Device Model";
+	private static final String EXP_PAGINATION = "Pagination works correctly";
+	private static final String EXP_VALIDATE_BUTTONS = "All buttons are displayed and enabled successfully.";
+	private static final String EXP_COMPONENT_TITLES = "All components are displayed and validated successfully.";
+
 	private ExcelUtility excelUtility;
 	private DeviceModelsPage deviceModelsPage;
 	private CommonMethods comm;
@@ -187,10 +216,10 @@ public class DeviceModelsPageTest extends TestBase implements DeviceModelConstan
 	 *  which we can use it further for search that perticular madel.
 	 *  so it does not able to validate the actual and expected data
 	 *
-	 *  NOTE : modify in future
+	 * NOTE : modify in future
 	 *
-	 *  */
-//	@Test(priority = 22)
+	 */
+	// @Test(priority = 22)
 	public void testTableDataOfDeviceModelListTable() {
 		Map<String, String> expectedRowPatterns = new LinkedHashMap<>();
 		expectedRowPatterns.put("MODEL CODE", "[A-Za-z]{6}"); // 6-letter code

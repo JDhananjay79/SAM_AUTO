@@ -26,7 +26,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-import com.aepl.sam.constants.Constants;
+import com.aepl.sam.utils.Constants;
 import com.aepl.sam.locators.DeviceDetailsPageLocators;
 import com.aepl.sam.utils.TableUtils;
 
@@ -106,77 +106,83 @@ public class DeviceDetailsPage extends DeviceDetailsPageLocators {
 		}
 	}
 
-//	public String viewLoginPacket() {
-//		try {
-//			logger.info("Attempting to view login packet details.");
-//
-//			List<WebElement> eyeIcons = driver.findElements(EYE_ICON);
-//			logger.debug("Found {} eye icons on the page.", eyeIcons.size());
-//
-//			WebElement eyeElement = eyeIcons.get(5);
-//			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", eyeElement);
-//			Thread.sleep(500);
-//			eyeElement.click();
-//			logger.info("Clicked 6th eye icon to open login packet details.");
-//
-//			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-//			WebElement modal = wait.until(ExpectedConditions
-//					.visibilityOfElementLocated(By.xpath("//div[contains(@class, 'component-body')]")));
-//
-//			List<WebElement> detailsElements = driver
-//					.findElements(By.xpath("//div[@class='component-body'][.//table]"));
-//			logger.debug("Found {} component-body elements containing tables.", detailsElements.size());
-//
-//			WebElement frameElement = detailsElements.get(detailsElements.size() - 1);
-//			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", frameElement);
-//			Thread.sleep(500);
-//
-//			String loginPacketDetails = frameElement.getText();
-//			logger.debug("Raw login packet text:\n{}", loginPacketDetails);
-//
-//			String[] lines = loginPacketDetails.split("\n");
-//			Map<String, String> dataMap = new LinkedHashMap<>();
-//
-//			for (int i = 0; i < lines.length - 1; i++) {
-//				if (lines[i].endsWith(":")) {
-//					String key = lines[i].replace(":", "").trim();
-//					String value = lines[i + 1].trim();
-//					dataMap.put(key, value);
-//					i++; // skip value line
-//				}
-//			}
-//
-//			JSONObject json = new JSONObject(dataMap);
-//
-//			String directoryPath = "D:\\Sampark_Automation\\SAM_AUTO\\test-results";
-//			String filePath = directoryPath + "\\login_packet.json";
-//
-//			File directory = new File(directoryPath);
-//			if (!directory.exists()) {
-//				if (directory.mkdirs()) {
-//					logger.info("Created missing directory: {}", directoryPath);
-//				} else {
-//					logger.error("Failed to create directory: {}", directoryPath);
-//					return "Failed to create output directory";
-//				}
-//			}
-//
-//			try (FileWriter file = new FileWriter(filePath)) {
-//				file.write(json.toString(4)); // pretty print
-//			} catch (IOException ioe) {
-//				logger.error("Failed to write JSON file: {}", ioe.getMessage(), ioe);
-//				return "Failed to write login packet to file";
-//			}
-//
-//			driver.findElement(By.xpath("//button[contains(@class, 'custom-close-btn')]")).click();
-//			logger.info("Login packet details viewed and saved as structured JSON.");
-//			return "Login packet details are displayed successfully";
-//
-//		} catch (Exception e) {
-//			logger.error("Failed to display login packet details: {}", e.getMessage(), e);
-//			return "Failed to display login packet details";
-//		}
-//	}
+	// public String viewLoginPacket() {
+	// try {
+	// logger.info("Attempting to view login packet details.");
+	//
+	// List<WebElement> eyeIcons = driver.findElements(EYE_ICON);
+	// logger.debug("Found {} eye icons on the page.", eyeIcons.size());
+	//
+	// WebElement eyeElement = eyeIcons.get(5);
+	// ((JavascriptExecutor)
+	// driver).executeScript("arguments[0].scrollIntoView(true);", eyeElement);
+	// Thread.sleep(500);
+	// eyeElement.click();
+	// logger.info("Clicked 6th eye icon to open login packet details.");
+	//
+	// WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+	// WebElement modal = wait.until(ExpectedConditions
+	// .visibilityOfElementLocated(By.xpath("//div[contains(@class,
+	// 'component-body')]")));
+	//
+	// List<WebElement> detailsElements = driver
+	// .findElements(By.xpath("//div[@class='component-body'][.//table]"));
+	// logger.debug("Found {} component-body elements containing tables.",
+	// detailsElements.size());
+	//
+	// WebElement frameElement = detailsElements.get(detailsElements.size() - 1);
+	// ((JavascriptExecutor)
+	// driver).executeScript("arguments[0].scrollIntoView(true);", frameElement);
+	// Thread.sleep(500);
+	//
+	// String loginPacketDetails = frameElement.getText();
+	// logger.debug("Raw login packet text:\n{}", loginPacketDetails);
+	//
+	// String[] lines = loginPacketDetails.split("\n");
+	// Map<String, String> dataMap = new LinkedHashMap<>();
+	//
+	// for (int i = 0; i < lines.length - 1; i++) {
+	// if (lines[i].endsWith(":")) {
+	// String key = lines[i].replace(":", "").trim();
+	// String value = lines[i + 1].trim();
+	// dataMap.put(key, value);
+	// i++; // skip value line
+	// }
+	// }
+	//
+	// JSONObject json = new JSONObject(dataMap);
+	//
+	// String directoryPath = "D:\\Sampark_Automation\\SAM_AUTO\\test-results";
+	// String filePath = directoryPath + "\\login_packet.json";
+	//
+	// File directory = new File(directoryPath);
+	// if (!directory.exists()) {
+	// if (directory.mkdirs()) {
+	// logger.info("Created missing directory: {}", directoryPath);
+	// } else {
+	// logger.error("Failed to create directory: {}", directoryPath);
+	// return "Failed to create output directory";
+	// }
+	// }
+	//
+	// try (FileWriter file = new FileWriter(filePath)) {
+	// file.write(json.toString(4)); // pretty print
+	// } catch (IOException ioe) {
+	// logger.error("Failed to write JSON file: {}", ioe.getMessage(), ioe);
+	// return "Failed to write login packet to file";
+	// }
+	//
+	// driver.findElement(By.xpath("//button[contains(@class,
+	// 'custom-close-btn')]")).click();
+	// logger.info("Login packet details viewed and saved as structured JSON.");
+	// return "Login packet details are displayed successfully";
+	//
+	// } catch (Exception e) {
+	// logger.error("Failed to display login packet details: {}", e.getMessage(),
+	// e);
+	// return "Failed to display login packet details";
+	// }
+	// }
 
 	public String viewLoginPacket() {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -296,82 +302,89 @@ public class DeviceDetailsPage extends DeviceDetailsPageLocators {
 		}
 	}
 
-//	public String viewHealthPacket() {
-//		try {
-//			logger.info("Attempting to view health packet details.");
-//
-//			((JavascriptExecutor) driver).executeScript("window.scrollBy(0, -250);");
-//
-//			List<WebElement> eyeIcons = driver.findElements(EYE_ICON);
-//			logger.debug("Found {} eye icons on the page.", eyeIcons.size());
-//
-//			WebElement eyeElement = eyeIcons.get(5);
-//			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", eyeElement);
-//			Thread.sleep(500);
-//			eyeElement.click();
-//			logger.info("Clicked 6th eye icon to open health packet details.");
-//
-//			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-//			WebElement modal = wait.until(ExpectedConditions
-//					.visibilityOfElementLocated(By.xpath("//div[contains(@class, 'component-body')]")));
-//
-//			List<WebElement> detailsElements = driver
-//					.findElements(By.xpath("//div[@class='component-body'][.//table]"));
-//			logger.debug("Found {} component-body elements containing tables.", detailsElements.size());
-//
-//			WebElement frameElement = detailsElements.get(detailsElements.size() - 1);
-//			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", frameElement);
-//			Thread.sleep(500);
-//
-//			String healthPacketDetails = frameElement.getText();
-//			logger.debug("Raw health packet text:\n{}", healthPacketDetails);
-//
-//			// Parse the string into key-value pairs
-//			String[] lines = healthPacketDetails.split("\n");
-//			Map<String, String> dataMap = new LinkedHashMap<>();
-//
-//			for (int i = 0; i < lines.length - 1; i++) {
-//				if (lines[i].endsWith(":")) {
-//					String key = lines[i].replace(":", "").trim();
-//					String value = lines[i + 1].trim();
-//					dataMap.put(key, value);
-//					i++; // skip value line
-//				}
-//			}
-//
-//			JSONObject json = new JSONObject(dataMap);
-//
-//			// Directory and file setup
-//			String directoryPath = "D:\\AEPL_AUTOMATION\\SAM_AUTO\\test-results\\outputFiles";
-//			String filePath = directoryPath + "\\health_packet.json";
-//
-//			File directory = new File(directoryPath);
-//			if (!directory.exists()) {
-//				if (directory.mkdirs()) {
-//					logger.info("Created missing directory: {}", directoryPath);
-//				} else {
-//					logger.error("Failed to create directory: {}", directoryPath);
-//					return "Failed to create output directory";
-//				}
-//			}
-//
-//			// Write to file
-//			try (FileWriter file = new FileWriter(filePath)) {
-//				file.write(json.toString(4)); // pretty print
-//			} catch (IOException ioe) {
-//				logger.error("Failed to write JSON file: {}", ioe.getMessage(), ioe);
-//				return "Failed to write health packet to file";
-//			}
-//
-//			driver.findElement(By.xpath("//button[contains(@class, 'custom-close-btn')]")).click();
-//			logger.info("Health packet details viewed and saved as structured JSON.");
-//			return "Health packet details are displayed successfully";
-//
-//		} catch (Exception e) {
-//			logger.error("Failed to display health packet details: {}", e.getMessage(), e);
-//			return "Failed to display health packet details";
-//		}
-//	}
+	// public String viewHealthPacket() {
+	// try {
+	// logger.info("Attempting to view health packet details.");
+	//
+	// ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, -250);");
+	//
+	// List<WebElement> eyeIcons = driver.findElements(EYE_ICON);
+	// logger.debug("Found {} eye icons on the page.", eyeIcons.size());
+	//
+	// WebElement eyeElement = eyeIcons.get(5);
+	// ((JavascriptExecutor)
+	// driver).executeScript("arguments[0].scrollIntoView(true);", eyeElement);
+	// Thread.sleep(500);
+	// eyeElement.click();
+	// logger.info("Clicked 6th eye icon to open health packet details.");
+	//
+	// WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+	// WebElement modal = wait.until(ExpectedConditions
+	// .visibilityOfElementLocated(By.xpath("//div[contains(@class,
+	// 'component-body')]")));
+	//
+	// List<WebElement> detailsElements = driver
+	// .findElements(By.xpath("//div[@class='component-body'][.//table]"));
+	// logger.debug("Found {} component-body elements containing tables.",
+	// detailsElements.size());
+	//
+	// WebElement frameElement = detailsElements.get(detailsElements.size() - 1);
+	// ((JavascriptExecutor)
+	// driver).executeScript("arguments[0].scrollIntoView(true);", frameElement);
+	// Thread.sleep(500);
+	//
+	// String healthPacketDetails = frameElement.getText();
+	// logger.debug("Raw health packet text:\n{}", healthPacketDetails);
+	//
+	// // Parse the string into key-value pairs
+	// String[] lines = healthPacketDetails.split("\n");
+	// Map<String, String> dataMap = new LinkedHashMap<>();
+	//
+	// for (int i = 0; i < lines.length - 1; i++) {
+	// if (lines[i].endsWith(":")) {
+	// String key = lines[i].replace(":", "").trim();
+	// String value = lines[i + 1].trim();
+	// dataMap.put(key, value);
+	// i++; // skip value line
+	// }
+	// }
+	//
+	// JSONObject json = new JSONObject(dataMap);
+	//
+	// // Directory and file setup
+	// String directoryPath =
+	// "D:\\AEPL_AUTOMATION\\SAM_AUTO\\test-results\\outputFiles";
+	// String filePath = directoryPath + "\\health_packet.json";
+	//
+	// File directory = new File(directoryPath);
+	// if (!directory.exists()) {
+	// if (directory.mkdirs()) {
+	// logger.info("Created missing directory: {}", directoryPath);
+	// } else {
+	// logger.error("Failed to create directory: {}", directoryPath);
+	// return "Failed to create output directory";
+	// }
+	// }
+	//
+	// // Write to file
+	// try (FileWriter file = new FileWriter(filePath)) {
+	// file.write(json.toString(4)); // pretty print
+	// } catch (IOException ioe) {
+	// logger.error("Failed to write JSON file: {}", ioe.getMessage(), ioe);
+	// return "Failed to write health packet to file";
+	// }
+	//
+	// driver.findElement(By.xpath("//button[contains(@class,
+	// 'custom-close-btn')]")).click();
+	// logger.info("Health packet details viewed and saved as structured JSON.");
+	// return "Health packet details are displayed successfully";
+	//
+	// } catch (Exception e) {
+	// logger.error("Failed to display health packet details: {}", e.getMessage(),
+	// e);
+	// return "Failed to display health packet details";
+	// }
+	// }
 
 	public String viewHealthPacket() {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -552,10 +565,10 @@ public class DeviceDetailsPage extends DeviceDetailsPageLocators {
 			Assert.assertTrue(searchBtn.isDisplayed(), "Search button is not displayed");
 			return searchBtn.isDisplayed();
 		} catch (TimeoutException e) {
-			System.err.println("Search button not found: " + e.getMessage());
+			logger.error("Search button not found: {}", e.getMessage());
 			return false;
 		} catch (Exception e) {
-			System.err.println("Unexpected error while checking search button visibility: " + e.getMessage());
+			logger.error("Unexpected error while checking search button visibility: {}", e.getMessage());
 			return false;
 		}
 	}
@@ -567,10 +580,10 @@ public class DeviceDetailsPage extends DeviceDetailsPageLocators {
 			Assert.assertTrue(searchBtn.isEnabled(), "Search button is not displayed");
 			return searchBtn.isEnabled();
 		} catch (TimeoutException e) {
-			System.err.println("Search button not found: " + e.getMessage());
+			logger.error("Search button not found: {}", e.getMessage());
 			return false;
 		} catch (Exception e) {
-			System.err.println("Unexpected error while checking search button enabled state: " + e.getMessage());
+			logger.error("Unexpected error while checking search button enabled state: {}", e.getMessage());
 			return false;
 		}
 	}
@@ -583,10 +596,10 @@ public class DeviceDetailsPage extends DeviceDetailsPageLocators {
 			comm.highlightElement(searchInput, "green");
 			return searchInput.isDisplayed();
 		} catch (TimeoutException e) {
-			System.err.println("Search input not found: " + e.getMessage());
+			logger.error("Search input not found: {}", e.getMessage());
 			return false;
 		} catch (Exception e) {
-			System.err.println("Unexpected error while checking search input visibility: " + e.getMessage());
+			logger.error("Unexpected error while checking search input visibility: {}", e.getMessage());
 			return false;
 		}
 	}
@@ -598,10 +611,10 @@ public class DeviceDetailsPage extends DeviceDetailsPageLocators {
 			comm.highlightElement(searchInput, "green");
 			return searchInput.isEnabled();
 		} catch (TimeoutException e) {
-			System.err.println("Search input not found: " + e.getMessage());
+			logger.error("Search input not found: {}", e.getMessage());
 			return false;
 		} catch (Exception e) {
-			System.err.println("Unexpected error while checking search input enabled state: " + e.getMessage());
+			logger.error("Unexpected error while checking search input enabled state: {}", e.getMessage());
 			return false;
 		}
 	}
@@ -630,16 +643,16 @@ public class DeviceDetailsPage extends DeviceDetailsPageLocators {
 			} catch (ElementClickInterceptedException e) {
 				// Fallback to JS click if intercepted
 				((JavascriptExecutor) driver).executeScript("arguments[0].click();", searchBtn);
-				System.out.println("⚠️ Performed JS click due to intercept.");
+				logger.warn("⚠️ Performed JS click due to intercept.");
 			}
 
 			return true;
 
 		} catch (TimeoutException e) {
-			System.err.println("Search input or button not found: " + e.getMessage());
+			logger.error("Search input or button not found: {}", e.getMessage());
 			return false;
 		} catch (Exception e) {
-			System.err.println("Unexpected error during device search: " + e.getMessage());
+			logger.error("Unexpected error during device search: {}", e.getMessage());
 			return false;
 		}
 	}
@@ -689,10 +702,10 @@ public class DeviceDetailsPage extends DeviceDetailsPageLocators {
 			comm.highlightElement(imeiInput, "solid purple");
 			return imeiInput.isEnabled();
 		} catch (TimeoutException e) {
-			System.err.println("IMEI input field is not clickable: " + e.getMessage());
+			logger.error("IMEI input field is not clickable: {}", e.getMessage());
 			return false;
 		} catch (Exception e) {
-			System.err.println("Unexpected error while checking IMEI input clickable state: " + e.getMessage());
+			logger.error("Unexpected error while checking IMEI input clickable state: {}", e.getMessage());
 			return false;
 		}
 	}
@@ -717,10 +730,10 @@ public class DeviceDetailsPage extends DeviceDetailsPageLocators {
 			Assert.assertEquals(toastText, "Invalid IMEI. Please try again.", "Toast message does not match expected");
 			return true;
 		} catch (TimeoutException e) {
-			System.err.println("Search input or button not found: " + e.getMessage());
+			logger.error("Search input or button not found: {}", e.getMessage());
 			return false;
 		} catch (Exception e) {
-			System.err.println("Unexpected error during device search: " + e.getMessage());
+			logger.error("Unexpected error during device search: {}", e.getMessage());
 			return false;
 		}
 	}
@@ -745,10 +758,10 @@ public class DeviceDetailsPage extends DeviceDetailsPageLocators {
 
 			return searchedImei;
 		} catch (TimeoutException e) {
-			System.err.println("Search input or button not found: " + e.getMessage());
+			logger.error("Search input or button not found: {}", e.getMessage());
 			return "Search input or button not found";
 		} catch (Exception e) {
-			System.err.println("Unexpected error during device search: " + e.getMessage());
+			logger.error("Unexpected error during device search: {}", e.getMessage());
 			return "Unexpected error during device search";
 		}
 	}
@@ -760,10 +773,10 @@ public class DeviceDetailsPage extends DeviceDetailsPageLocators {
 			Assert.assertTrue(fotaBtn.isEnabled(), "FOTA button is not enabled");
 			return fotaBtn.isEnabled();
 		} catch (TimeoutException e) {
-			System.err.println("FOTA button not found: " + e.getMessage());
+			logger.error("FOTA button not found: {}", e.getMessage());
 			return false;
 		} catch (Exception e) {
-			System.err.println("Unexpected error while checking FOTA button enabled state: " + e.getMessage());
+			logger.error("Unexpected error while checking FOTA button enabled state: {}", e.getMessage());
 			return false;
 		}
 	}
@@ -781,10 +794,10 @@ public class DeviceDetailsPage extends DeviceDetailsPageLocators {
 			driver.navigate().back();
 			return true;
 		} catch (TimeoutException e) {
-			System.err.println("FOTA button not found or not clickable: " + e.getMessage());
+			logger.error("FOTA button not found or not clickable: {}", e.getMessage());
 			return false;
 		} catch (Exception e) {
-			System.err.println("Unexpected error while checking FOTA button clickable state: " + e.getMessage());
+			logger.error("Unexpected error while checking FOTA button clickable state: {}", e.getMessage());
 			return false;
 		}
 	}
@@ -796,10 +809,10 @@ public class DeviceDetailsPage extends DeviceDetailsPageLocators {
 			Assert.assertTrue(otaBtn.isEnabled(), "OTA button is not enabled");
 			return otaBtn.isEnabled();
 		} catch (TimeoutException e) {
-			System.err.println("OTA button not found: " + e.getMessage());
+			logger.error("OTA button not found: {}", e.getMessage());
 			return false;
 		} catch (Exception e) {
-			System.err.println("Unexpected error while checking OTA button enabled state: " + e.getMessage());
+			logger.error("Unexpected error while checking OTA button enabled state: {}", e.getMessage());
 			return false;
 		}
 	}
@@ -811,16 +824,16 @@ public class DeviceDetailsPage extends DeviceDetailsPageLocators {
 			otaBtn.click();
 
 			String currentUrl = driver.getCurrentUrl();
-			System.out.println("Current URL after clicking OTA button: " + currentUrl);
+			logger.info("Current URL after clicking OTA button: {}", currentUrl);
 			Assert.assertTrue(currentUrl.contains("manual-ota"), "OTA page URL does not contain 'ota'");
 
 			driver.navigate().back();
 			return true;
 		} catch (TimeoutException e) {
-			System.err.println("OTA button not found or not clickable: " + e.getMessage());
+			logger.error("OTA button not found or not clickable: {}", e.getMessage());
 			return false;
 		} catch (Exception e) {
-			System.err.println("Unexpected error while checking OTA button clickable state: " + e.getMessage());
+			logger.error("Unexpected error while checking OTA button clickable state: {}", e.getMessage());
 			return false;
 		}
 	}
@@ -834,10 +847,10 @@ public class DeviceDetailsPage extends DeviceDetailsPageLocators {
 			}
 			return true;
 		} catch (TimeoutException e) {
-			System.err.println("Info cards not found: " + e.getMessage());
+			logger.error("Info cards not found: {}", e.getMessage());
 			return false;
 		} catch (Exception e) {
-			System.err.println("Unexpected error while checking info cards visibility: " + e.getMessage());
+			logger.error("Unexpected error while checking info cards visibility: {}", e.getMessage());
 			return false;
 		}
 	}
@@ -851,10 +864,10 @@ public class DeviceDetailsPage extends DeviceDetailsPageLocators {
 			}
 			return true;
 		} catch (TimeoutException e) {
-			System.err.println("Info cards not found: " + e.getMessage());
+			logger.error("Info cards not found: {}", e.getMessage());
 			return false;
 		} catch (Exception e) {
-			System.err.println("Unexpected error while checking info cards enabled state: " + e.getMessage());
+			logger.error("Unexpected error while checking info cards enabled state: {}", e.getMessage());
 			return false;
 		}
 	}
@@ -919,10 +932,10 @@ public class DeviceDetailsPage extends DeviceDetailsPageLocators {
 			}
 			return true;
 		} catch (TimeoutException e) {
-			System.err.println("Components not found: " + e.getMessage());
+			logger.error("Components not found: {}", e.getMessage());
 			return false;
 		} catch (Exception e) {
-			System.err.println("Unexpected error while checking components visibility: " + e.getMessage());
+			logger.error("Unexpected error while checking components visibility: {}", e.getMessage());
 			return false;
 		}
 	}
@@ -933,10 +946,10 @@ public class DeviceDetailsPage extends DeviceDetailsPageLocators {
 					.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(ALL_COMPONENT));
 			return components.size();
 		} catch (TimeoutException e) {
-			System.err.println("Components not found: " + e.getMessage());
+			logger.error("Components not found: {}", e.getMessage());
 			return 0;
 		} catch (Exception e) {
-			System.err.println("Unexpected error while counting components: " + e.getMessage());
+			logger.error("Unexpected error while counting components: {}", e.getMessage());
 			return 0;
 		}
 	}
@@ -975,10 +988,10 @@ public class DeviceDetailsPage extends DeviceDetailsPageLocators {
 
 			return true;
 		} catch (TimeoutException e) {
-			System.err.println("GPS Details component or buttons not found: " + e.getMessage());
+			logger.error("GPS Details component or buttons not found: {}", e.getMessage());
 			return false;
 		} catch (Exception e) {
-			System.err.println("Unexpected error while validating GPS Details component buttons: " + e.getMessage());
+			logger.error("Unexpected error while validating GPS Details component buttons: {}", e.getMessage());
 			return false;
 		}
 	}
@@ -995,11 +1008,10 @@ public class DeviceDetailsPage extends DeviceDetailsPageLocators {
 
 			return true;
 		} catch (TimeoutException e) {
-			System.err.println("Last 50 Login Packets component not found: " + e.getMessage());
+			logger.error("Last 50 Login Packets component not found: {}", e.getMessage());
 		} catch (Exception e) {
-			System.err.println(
-					"Unexpected error while checking Last 50 Login Packets component visibility: " + e.getMessage());
-			e.printStackTrace();
+			logger.error("Unexpected error while checking Last 50 Login Packets component visibility: {}",
+					e.getMessage());
 		}
 		return false;
 	}
@@ -1011,10 +1023,10 @@ public class DeviceDetailsPage extends DeviceDetailsPageLocators {
 			Assert.assertTrue(exportBtn.isDisplayed(), "Export button is not displayed");
 			return exportBtn.isDisplayed();
 		} catch (TimeoutException e) {
-			System.err.println("Export button not found: " + e.getMessage());
+			logger.error("Export button not found: {}", e.getMessage());
 			return false;
 		} catch (Exception e) {
-			System.err.println("Unexpected error while checking Export button visibility: " + e.getMessage());
+			logger.error("Unexpected error while checking Export button visibility: {}", e.getMessage());
 			return false;
 		}
 	}
@@ -1026,10 +1038,10 @@ public class DeviceDetailsPage extends DeviceDetailsPageLocators {
 			Assert.assertTrue(exportBtn.isEnabled(), "Export button is not enabled");
 			return exportBtn.isEnabled();
 		} catch (TimeoutException e) {
-			System.err.println("Export button not found: " + e.getMessage());
+			logger.error("Export button not found: {}", e.getMessage());
 			return false;
 		} catch (Exception e) {
-			System.err.println("Unexpected error while checking Export button enabled state: " + e.getMessage());
+			logger.error("Unexpected error while checking Export button enabled state: {}", e.getMessage());
 			return false;
 		}
 	}
@@ -1147,10 +1159,10 @@ public class DeviceDetailsPage extends DeviceDetailsPageLocators {
 			Assert.assertTrue(exportBtn.isDisplayed(), "Export button is not displayed");
 			return exportBtn.isDisplayed();
 		} catch (TimeoutException e) {
-			System.err.println("Export button not found: " + e.getMessage());
+			logger.error("Export button not found: {}", e.getMessage());
 			return false;
 		} catch (Exception e) {
-			System.err.println("Unexpected error while checking Export button visibility: " + e.getMessage());
+			logger.error("Unexpected error while checking Export button visibility: {}", e.getMessage());
 			return false;
 		}
 	}
@@ -1162,10 +1174,10 @@ public class DeviceDetailsPage extends DeviceDetailsPageLocators {
 			Assert.assertTrue(exportBtn.isEnabled(), "Export button is not enabled");
 			return exportBtn.isEnabled();
 		} catch (TimeoutException e) {
-			System.err.println("Export button not found: " + e.getMessage());
+			logger.error("Export button not found: {}", e.getMessage());
 			return false;
 		} catch (Exception e) {
-			System.err.println("Unexpected error while checking Export button enabled state: " + e.getMessage());
+			logger.error("Unexpected error while checking Export button enabled state: {}", e.getMessage());
 			return false;
 		}
 	}
@@ -1237,3 +1249,4 @@ public class DeviceDetailsPage extends DeviceDetailsPageLocators {
 		return tableUtils.clickFirstViewButton(By.xpath("//table"));
 	}
 }
+

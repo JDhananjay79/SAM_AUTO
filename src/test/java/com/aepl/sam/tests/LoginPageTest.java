@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import com.aepl.sam.base.TestBase;
-import com.aepl.sam.constants.Constants;
+import com.aepl.sam.utils.Constants;
 import com.aepl.sam.pages.CommonMethods;
 import com.aepl.sam.pages.LoginPage;
 import com.aepl.sam.utils.ConfigProperties;
@@ -39,23 +39,27 @@ public class LoginPageTest extends TestBase {
 		excelUtility.initializeExcel("Login_Page_Test");
 	}
 
-// --------------------------- old error getter -------------------------
+	// --------------------------- old error getter -------------------------
 
-//	private By getErrorLocator(String expectedErrorMessage) {
-//		if (expectedErrorMessage.equals(Constants.email_error_msg_01)
-//				|| expectedErrorMessage.equals(Constants.email_error_msg_02)) {
-//			// "//mat-error[contains(text(), \"This field is required and can't be only spaces.\")]";
-//			return By.xpath("//mat-error[contains(text(), '\" + expectedErrorMessage + \"')]");
-//		} else if (expectedErrorMessage.equals(Constants.password_error_msg_01)
-//				|| expectedErrorMessage.equals(Constants.password_error_msg_02)) {
-//			return By.xpath("//mat-error[contains(text(), '" + expectedErrorMessage + "')]");
-//		} else if (expectedErrorMessage.equals(Constants.toast_error_msg_01)
-//				|| expectedErrorMessage.equals(Constants.toast_error_msg_02)) {
-//			return By.xpath("//span[text()='" + expectedErrorMessage + "']");
-//		} else {
-//			throw new IllegalArgumentException("Unknown error message: " + expectedErrorMessage);
-//		}
-//	}
+	// private By getErrorLocator(String expectedErrorMessage) {
+	// if (expectedErrorMessage.equals(Constants.email_error_msg_01)
+	// || expectedErrorMessage.equals(Constants.email_error_msg_02)) {
+	// // "//mat-error[contains(text(), \"This field is required and can't be only
+	// spaces.\")]";
+	// return By.xpath("//mat-error[contains(text(), '\" + expectedErrorMessage +
+	// \"')]");
+	// } else if (expectedErrorMessage.equals(Constants.password_error_msg_01)
+	// || expectedErrorMessage.equals(Constants.password_error_msg_02)) {
+	// return By.xpath("//mat-error[contains(text(), '" + expectedErrorMessage +
+	// "')]");
+	// } else if (expectedErrorMessage.equals(Constants.toast_error_msg_01)
+	// || expectedErrorMessage.equals(Constants.toast_error_msg_02)) {
+	// return By.xpath("//span[text()='" + expectedErrorMessage + "']");
+	// } else {
+	// throw new IllegalArgumentException("Unknown error message: " +
+	// expectedErrorMessage);
+	// }
+	// }
 
 	private By getErrorLocator(String expectedErrorMessage) {
 		logger.debug("Finding error locator for message: {}", expectedErrorMessage);
@@ -240,7 +244,7 @@ public class LoginPageTest extends TestBase {
 		}
 	}
 
-//	@Test(priority = 15)
+	// @Test(priority = 15)
 	public void testForgotPasswordLink() {
 		executor.executeTest("Forgot Password Link Test", Constants.EXP_FRGT_PWD_URL, () -> {
 			loginPage.clickForgotPassword();
@@ -248,13 +252,13 @@ public class LoginPageTest extends TestBase {
 		});
 	}
 
-//	@Test(priority = 16)
+	// @Test(priority = 16)
 	public void testInputErrMessage() {
 		executor.executeTest("Input Error Message Test", "This field is required and can't be only spaces.",
 				loginPage::inputErrMessage);
 	}
 
-//	@Test(priority = 16)
+	// @Test(priority = 16)
 	public void testResetPassword() {
 		executor.executeTest("Reset Password Test", "Password reset link sent to your email.",
 				loginPage::resetPassword);
@@ -273,7 +277,7 @@ public class LoginPageTest extends TestBase {
 	@Test(priority = 19)
 	public void loginSuccess() {
 		executor.executeTest("Login Success Test", Constants.DASH_URL, () -> {
-//			driver.navigate().refresh();
+			// driver.navigate().refresh();
 			loginPage.enterUsername(ConfigProperties.getProperty("username"))
 					.enterPassword(ConfigProperties.getProperty("password")).clickLogin();
 			try {
