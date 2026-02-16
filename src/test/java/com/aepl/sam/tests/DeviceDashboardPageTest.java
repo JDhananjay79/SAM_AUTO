@@ -14,16 +14,7 @@ import com.aepl.sam.pages.DeviceDashboardPage;
 import com.aepl.sam.utils.ExcelUtility;
 
 public class DeviceDashboardPageTest extends TestBase {
-
-	// =========================================================
-	// 🧾 Excel Sheet Information
-	// =========================================================
 	private static final String DEVICE_DASHBOARD_EXCEL_SHEET = "DeviceDashboardTests";
-
-	// =========================================================
-	// 🧪 TEST CASE NAMES (TC_)
-	// =========================================================
-	// --- General Tests ---
 	private static final String TC_PAGE_LOGO = "Verify Company Logo";
 	private static final String TC_PAGE_TITLE = "Verify Page Title";
 	private static final String TC_NAV_BAR = "Verify Navigation Bar Link";
@@ -42,10 +33,6 @@ public class DeviceDashboardPageTest extends TestBase {
 	private static final String TC_SEARCH_INPUT_ENABLED = "Search Input Enabled";
 	private static final String TC_SEARCH_BUTTON_VISIBLE = "Search Button Visible";
 	private static final String TC_SEARCH_BUTTON_ENABLED = "Search Button Enabled";
-
-	// =========================================================
-	// 🎯 EXPECTED RESULTS (EXP_)
-	// =========================================================
 	// --- General Expectations ---
 	private static final Boolean EXP_LOGO_DISPLAYED = true;
 	private static final String EXP_PAGE_TITLE = "AEPL Sampark Diagnostic Cloud";
@@ -57,7 +44,6 @@ public class DeviceDashboardPageTest extends TestBase {
 	private static final String EXP_COPYRIGHT = "Accolade Electronics Pvt. Ltd.";
 
 	// --- Search Field Expectations ---
-
 	private static final String EXP_SEARCH_INPUT_ENABLED = "Search Input Enabled";
 	private static final String EXP_SEARCH_INPUT_NOT_ENABLED = "Search Input Not Enabled";
 	private static final String EXP_SEARCH_INPUT_VISIBLE = "Search Input Visible";
@@ -72,9 +58,6 @@ public class DeviceDashboardPageTest extends TestBase {
 	private static final String EXP_EXPORT_BUTTON_ENABLED = "Export Button Enabled";
 	private static final String EXP_EXPORT_FUNCTIONALITY = "Export Functionality Working";
 
-	// =========================================================
-	// 📊 TABLE HEADERS
-	// =========================================================
 	private static final List<String> TOTAL_PRODUCTION_DEVICES_HEADERS = List.of("UIN NO.", "IMEI NO.", "ICCID NO.",
 			"MODEL NAME.",
 			"ACTION");
@@ -99,16 +82,10 @@ public class DeviceDashboardPageTest extends TestBase {
 			"MODEL NAME.", "VERSION.",
 			"ACTION");
 
-	// =========================================================
-	// ⏱️ DROPDOWN OPTIONS
-	// =========================================================
 	private static final List<String> ACTIVITY_DURATION_DROPDOWN_OPTIONS = List.of("All", "Today", "Five Days",
 			"Ten Days", "Fifteen Days",
 			"More Than Fifteen", "Not Active");
 
-	// =========================================================
-	// 📈 GRAPH LABELS
-	// =========================================================
 
 	private DeviceDashboardPage deviceDashboardPage;
 	private CommonMethods comm;
