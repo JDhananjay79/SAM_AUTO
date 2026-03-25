@@ -224,8 +224,8 @@ public class UserProfilePage extends UserProfilePageLocators {
 			io.restassured.response.Response response = io.restassured.RestAssured.given().relaxedHTTPSValidation()
 					.accept(ContentType.JSON)
 					.header("Authorization",
-							"Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdXJhai5iaGFsZXJhb0BhY2NvbGFkZWVsZWN0cm9uaWNzLmNvbSIsImlhdCI6MTc1NTY2NTQ3NSwiZXhwIjoxNzU1Njg3MDc1fQ.6f-LWpuw7tbVDJVuTRfXVO6iWCT2sRRY5VdxLxqnAjE")
-					.when().get("http://aepltest.accoladeelectronics.com:9090/users/getUserdetails?id=9").then()
+							"Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdXJhai5iaGFsZXJhb0BhY2NvbGFkZWVsZWN0cm9uaWNzLmNvbSIsImlhdCI6MTc3NDQyODUzOCwiZXhwIjoxNzc0NDUwMTM4fQ.4Sk8nAJNHsBmCUYyX9PEvDUOZwcKhuKgTU6EgMraOz4")
+					.when().get("http://sampark-qa.accoladeelectronics.com/profile/users/getUserdetails?id=16").then()
 					.statusCode(200).extract().response();
 
 			// Print full response JSON on console
