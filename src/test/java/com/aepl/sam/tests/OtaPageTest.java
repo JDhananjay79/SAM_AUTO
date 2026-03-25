@@ -3,7 +3,7 @@ package com.aepl.sam.tests;
 import com.aepl.sam.base.TestBase;
 
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -24,7 +24,7 @@ public class OtaPageTest extends TestBase {
 	private Executor executor;
 
 	@Override
-	@BeforeClass
+	@BeforeMethod
 	public void setUp() {
 		super.setUp();
 		this.comm = new PageActionsUtil(driver, wait);
@@ -112,7 +112,3 @@ public class OtaPageTest extends TestBase {
 		softAssert.assertAll();
 	}
 }
-
-
-
-
