@@ -133,7 +133,3 @@ public class FotaPageTest extends TestBase {
 		softAssert.assertAll();
 	}
 }
-
-
-
-

@@ -51,7 +51,7 @@ public class RoleManagementPageTest extends TestBase {
 		executor.executeTest("Verify NavBar Link Navigation", Constants.ROLE_MANAGEMENT, userRole::navBarLink);
 	}
 
-	// @Test(priority = 4)
+	@Test(priority = 4)
 	public void testBackButton() {
 		executor.executeTest("Verify Back Button Navigation", "Back button navigated successfully.", () -> {
 			userRole.backButton();
@@ -59,7 +59,7 @@ public class RoleManagementPageTest extends TestBase {
 		});
 	}
 
-	// @Test(priority = 5)
+	@Test(priority = 5)
 	public void testRefreshButton() {
 		executor.executeTest("Verify Refresh Button Functionality", "Role Management", userRole::refreshButton);
 	}
@@ -93,7 +93,7 @@ public class RoleManagementPageTest extends TestBase {
 		});
 	}
 
-	// @Test(priority = 10)
+	@Test(priority = 10)
 	public void testUpdateUserRole() {
 		executor.executeTest("Verify Update User Role Functionality", "User role should be updated successfully", () -> {
 			userRole.updateUserRole();
@@ -101,7 +101,7 @@ public class RoleManagementPageTest extends TestBase {
 		});
 	}
 
-	// @Test(priority = 11)
+	@Test(priority = 11)
 	public void testDeleteUserRole() {
 		executor.executeTest("Verify Delete User Role Functionality", "User role should be deleted successfully", () -> {
 			userRole.deleteUserRole();
@@ -109,7 +109,7 @@ public class RoleManagementPageTest extends TestBase {
 		});
 	}
 
-	// // @Test(priority = 12)
+	@Test(priority = 12)
 	public void testPagination() {
 		executor.executeTest("Verify Pagination Functionality", Constants.EXP_PAGINATION_TEXT, () -> {
 			comm.checkPagination();
@@ -117,12 +117,12 @@ public class RoleManagementPageTest extends TestBase {
 		});
 	}
 
-	// @Test(priority = 13)
+	@Test(priority = 13)
 	public void testVersion() {
 		executor.executeTest("Verify Version Functionality", Constants.EXP_VERSION_TEXT, assertion::checkVersion);
 	}
 
-	// @Test(priority = 14)
+	@Test(priority = 14)
 	public void testCopyright() {
 		executor.executeTest("Verify Copyright Functionality", Constants.EXP_COPYRIGHT_TEXT, assertion::checkCopyright);
 	}

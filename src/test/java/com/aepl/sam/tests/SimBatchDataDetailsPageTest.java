@@ -1,5 +1,7 @@
 package com.aepl.sam.tests;
 
+import java.util.List;
+
 import org.openqa.selenium.JavascriptExecutor;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -99,20 +101,27 @@ public class SimBatchDataDetailsPageTest extends TestBase {
 
 	@Test(priority = 16)
 	public void testUploadSimDataDetailsComponentsTableHeaders() {
-		// final List<String> EXP_UPLOAD_TABLE_HEADERS = List.of("ICCID", "CARD STATE", "CARD STATUS",
-		// 	"PRIMARY TSP", "FALLBACK TSP",
-		// 	"PRIMARY STATUS", "PRIMARY MSISDN", "FALLBACK STATUS", "FALLBACK MSISDN", "ACTIVE PROFILES",
-		// 	"CARD EXPIRY DATE", "PRODUCT NAME", "IS RSU REQUIRED", "IS IMSI REQUIRED", "ACTIVE SR NUMBER");
+		final List<String> EXP_UPLOAD_TABLE_HEADERS = List.of("ICCID", "CARD STATE", "CARD STATUS",
+			"PRIMARY TSP", "FALLBACK TSP",
+			"PRIMARY STATUS", "PRIMARY MSISDN", "FALLBACK STATUS", "FALLBACK MSISDN", "ACTIVE PROFILES",
+			"CARD EXPIRY DATE", "PRODUCT NAME", "IS RSU REQUIRED", "IS IMSI REQUIRED", "ACTIVE SR NUMBER");
+
+		executor.executeTest("Test Upload SIM Data Details Components Table Headers", EXP_UPLOAD_TABLE_HEADERS,
+				() -> simBatch.validateTableHeaders("upload"));
 	}
 
 	@Test(priority = 17)
 	public void testDuplicateICCIDInUploadedExcelSheetTableHeaders() {
-		// final List<String> EXP_DUPLICATE_ICCID_HEADERS = List.of("ICCID", "MESSAGE");
+		final List<String> EXP_DUPLICATE_ICCID_HEADERS = List.of("ICCID", "MESSAGE");
+		executor.executeTest("Test Duplicate ICCID in Uploaded Excel Sheet Table Headers", EXP_DUPLICATE_ICCID_HEADERS,
+				() -> simBatch.validateTableHeaders("duplicate"));
 	}
 
 	@Test(priority = 18)
 	public void testICCIDNotPresentInSensoriseDatabaseTableHeaders() {
-		// final List<String> EXP_NOT_PRESENT_ICCID_HEADERS = List.of("ICCID", "MESSAGE");
+		final List<String> EXP_NOT_PRESENT_ICCID_HEADERS = List.of("ICCID", "MESSAGE");
+		executor.executeTest("Test ICCID Not present in Sensorise Database Table Headers", EXP_NOT_PRESENT_ICCID_HEADERS,
+				() -> simBatch.validateTableHeaders("not present"));
 	}
 
 	@Test(priority = 19)
@@ -133,16 +142,23 @@ public class SimBatchDataDetailsPageTest extends TestBase {
 	@Test(priority = 22)
 	public void testManualUploadButtonIsVisible() {
 		// expectation placeholder removed
+		executor.executeTest("Test Manual Upload Button Visible", true,
+				simBatch::isManualUploadButtonsVisible);
 	}
 
 	@Test(priority = 23)
 	public void testManualUploadButtonIsClickable() {
 		// expectation placeholder removed
+		executor.executeTest("Test Manual Upload Button Clickable", true,
+				simBatch::isManualUploadButtonsClickable);
 	}
 
 	@Test(priority = 24)
 	public void testManualUploadClickAndOpen() {
 		// expectation placeholder removed
+		executor.executeTest("Test Manual Upload Button Clicked and Opened", true,
+				simBatch::manualUploadButtonClickedAndOpened);
+
 	}
 
 	@Test(priority = 27)
@@ -153,21 +169,28 @@ public class SimBatchDataDetailsPageTest extends TestBase {
 	@Test(priority = 28)
 	public void testEmptyInputValidation() {
 		// expectation placeholder removed
+		executor.executeTest("Test Empty Input Validation", "Input cannot be empty.",
+				() -> simBatch.isInputBoxHaveProperValidations(" "));
 	}
 
 	@Test(priority = 29)
 	public void testShortInputValidation() {
-		// expectation placeholder removed
+		executor.executeTest("Test Short Input Validation", "Input is too short.",
+				() -> simBatch.isInputBoxHaveProperValidations("shortText"));	
 	}
 
 	@Test(priority = 30)
 	public void testLongInputValidation() {
 		// expectation placeholder removed
+		executor.executeTest("Test Long Input Validation", "Input is too long.",
+				() -> simBatch.isInputBoxHaveProperValidations("thisIsMoreThan20CharactersInput"));
 	}
 
 	@Test(priority = 31)
 	public void testSpecialCharValidation() {
 		// expectation placeholder removed
+		executor.executeTest("Test Special Character Validation", "Input contains invalid characters.",
+				() -> simBatch.isInputBoxHaveProperValidations("Invalid@#%CharsInput"));
 	}
 
 	@Test(priority = 32)
