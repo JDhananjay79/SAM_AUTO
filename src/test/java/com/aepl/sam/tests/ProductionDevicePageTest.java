@@ -9,10 +9,10 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import com.aepl.sam.base.TestBase;
-import com.aepl.sam.utils.Constants;
-import com.aepl.sam.utils.PageAssertionsUtil;
 import com.aepl.sam.pages.ProductionDevicePage;
+import com.aepl.sam.utils.Constants;
 import com.aepl.sam.utils.ExcelUtility;
+import com.aepl.sam.utils.PageAssertionsUtil;
 
 public class ProductionDevicePageTest extends TestBase {
 
@@ -90,8 +90,8 @@ public class ProductionDevicePageTest extends TestBase {
 	// validate all components
 	@Test(priority = 8)
 	public void testAllComponentsVisible() {
-		executor.executeTest("Test all components are visible",
-				Constants.EXP_VALIDATE_COMPONENTS_TEXT, assertion::validateComponents);
+		executor.executeTest("Test all components are visible", Constants.EXP_VALIDATE_COMPONENTS_TEXT,
+				assertion::validateComponents);
 	}
 
 	// validate the manual upload button is visible
@@ -718,6 +718,3 @@ public class ProductionDevicePageTest extends TestBase {
 		softAssert.assertAll();
 	}
 }
-
-
-
